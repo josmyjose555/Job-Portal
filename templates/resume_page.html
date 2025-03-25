@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="IT Jobs & Career Portal India">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+<title>IPSR Jobs - IT jobs kerala South India</title>
+
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/line-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}">
+<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" href="{% static 'css/main1.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<link rel="stylesheet" href="">
+</head>
+
+<body>
+
+   
+
+ <section><div class="inner-heading"></div>
+<p></p>
+</section>
+<br><br>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+          
+        
+         
+ 
+<a class="btn badge badge-info"  href="{% url 'jobseeker_home' %}">Home </a>
+
+<a class="btn badge badge-info d-inline"  href="{% url 'pdf' %}">Download </a><br>
+
+
+<div class="section " style="padding-top:2px ;">
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-4 col-xs-12">
+    
+  
+    <div class="inner-box my-resume" style="border-bottom:none ;">
+
+    <div class="author-resume" style="border-bottom:none ;">
+    <div class="thumb">
+    <img src="{{resume.pro_pic.url}}" alt="" > 
+    </div>
+    <div class="author-info">
+    <h3 class="text-dark" style="font-family: Times New Roman;font-size: 20px;text-transform:uppercase">{{resume.first_name}} {{resume.last_name}}</h3>
+    <p class="sub-title text-dark" style="font-family: Times New Roman;font-size: 14px;"> {{resume.ptitle}}</p>
+    
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;"><i class="fa-solid fa-mobile-screen-button text-dark"></i> {{resume.phone}}</p>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;"><i class="fa-solid fa-envelope"></i>  {{resume.email}}</p>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;"> linkedlin: {{resume.linkedlin}}</p>
+   
+    </div>
+    </div>
+    <hr>
+    <div class="about-me item" style="border-bottom:none ;">
+    <h3 class="text-dark" style="font-family: Times New Roman;font-size: 20px;">CAREER OBJECTIVE</h3>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.objective}}</p>
+    </div>
+    <hr>
+    <!-- Expeerience ==================================================================================================================-->
+    {% if resume.exp_title and resume.exp_company and resume.exp_place and resume.start_year and resume.end_year and resume.exp_title2 and resume.exp_company2 and resume.exp_place2 and resume.start_year2 and resume.end_year2  %}
+    <div class="work-experence item" style="border-bottom:none ;">
+    <h3 class="text-dark" style="font-family: Times New Roman;font-size: 20px;">PROFESSIONAL EXPERIENCE</h3>
+
+    <h4 style="font-family: Times New Roman;font-size: 14px;" class="text-dark font-weight-bold">{{resume.exp_title}}</h4>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.exp_company}} ,{{resume.exp_place}}
+    <span class="date float-right text-dark font-weight-bold">({{resume.start_year}} - {{resume.end_year}})</span></p>
+    <h4 style="font-family: Times New Roman;font-size: 14px;" class="text-dark font-weight-bold">{{resume.exp_title2}}</h4>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.exp_company2}} ,{{resume.exp_place2}}
+    <span class="date float-right text-dark font-weight-bold" style="font-weight:bold ;">({{resume.start_year2}} - {{resume.end_year2}})</span></p>
+    </div>
+    
+    <hr>
+    
+    {% elif resume.exp_title == ' ' and resume.exp_company == ''  and resume.exp_place == ' ' and resume.start_year == ' ' and resume.end_year == ' ' %}
+    <div></div>
+    {% elif resume.exp_title and resume.exp_company and resume.exp_place and resume.start_year and resume.end_year %}
+    <div class="work-experence item">
+        <h3 class="text-dark" style="font-family: Times New Roman;font-size: 20px;">PROFESSIONAL EXPERIENCE</h3>
+        <h4 style="font-family: Times New Roman;font-size: 14px;" class="text-dark font-weight-bold">{{resume.exp_title}}</h4>
+        <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.exp_company}}, {{resume.exp_place}}<span class="date float-right text-dark font-weight-bold">({{resume.start_year}} - {{resume.end_year}})</span></p>
+        
+    </div>
+    <hr>
+    {% endif %}
+    <!-- ======================================================================= -->
+
+    
+    <div class="education item text-dark" style="border-bottom:none ;">
+    <h3 class="text-dark"style="font-family: Times New Roman;font-size: 20px;">EDUCATION</h3>
+    {% if resume.m_college and resume.m_location and resume.masters_name and resume.m_start and resume.m_end %}
+    <h4 class="text-dark font-weight-bold font-weight-bold" style="font-family: Times New Roman;font-size: 14px;">{{resume.education_institute}},{{resume.location}}</h4>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.ecourse}} <span class="date float-right text-dark font-weight-bold" style="float: right;"> ( {{resume.start}}-{{resume.end}} )</span></p>
+<br>
+    <h4 class="text-dark font-weight-bold font-weight-bold" style="font-family: Times New Roman;font-size: 14px;">{{resume.m_college}},{{resume.m_location}}</h4>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.masters_name}}  <span class="date float-right text-dark font-weight-bold" style="float: right;";>( {{resume.m_start}}-{{resume.m_end}} )</span></p>
+   <hr>
+        {% else %}
+    <h4 class="text-dark font-weight-bold" style="font-family: Times New Roman;font-size: 14px;">{{resume.education_institute}},{{resume.location}}</h4>
+    <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.ecourse}}  <span class="date float-right text-dark font-weight-bold" style="float: right;";> ( {{resume.start}}-{{resume.end}} )</span></p>
+    <hr>
+    {% endif %}
+    <br>
+    
+    
+    </div>
+    <div class="education item">
+        <h3 style="font-family: Times New Roman;font-size: 20px;">SKILLS:</h3>
+        <p class="text-dark" style="font-family: Times New Roman;font-size: 14px;">{{resume.skills}}</p>
+        
+        </ul>
+    </div></div></div></div></div></div></div></body>
+    </div>
+    </div>
+    </div>
+    </div>
+   

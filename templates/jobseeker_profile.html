@@ -1,0 +1,227 @@
+{% extends 'base3.html' %}
+{% load static %}
+{% block meta %}
+<title>Jobseeker Profile  -IPSR Jobs - IT jobs kerala South India</title>
+{% endblock %}
+
+{% block nav %}
+
+<li class="nav-item "><a class=" text-dark nav-link " href="{% url 'jobseeker_home' %}">Home</a></li>
+<li class="nav-item"><a class=" text-dark nav-link" href="{% url 'jobseeker_joblist' %}">Jobs</a></li>
+<!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <i class="material-icons text-dark " style="font-size:10px;padding-right:0px">chat</i></a></li>     --><!-- <li class="nav-item"><a class=" text-dark nav-link " href="#">Notifications <i class="fa-solid fa-bell text-dark " style="font-size: 10px;"></i></a></li> -->
+          <li class="nav-item"><a class=" text-dark nav-link " href="{% url 'jobseeker_applied_job' %}"></i>Manage Applications </a></li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+            {% if request.user.is_authenticated %}
+           {{request.user.first_name}}  {{request.user.last_name}}<i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% else %}
+           User <i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% endif %}
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_profile' %}"><i class="fa-solid fa-house-chimney text-dark"></i> My Profile</a></li>
+            <!-- <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_applied_job' %}"> <i class="fa-solid fa-file text-dark"></i>  My Jobs </a></li> -->
+            <!-- <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_saved_jobs' %}"><i class="fa-solid fa-heart text-dark"></i>  Saved Jobs </a></li> -->
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_create_cv' %}"><i class="fa-solid fa-file text-dark"></i> Create Resume </a></li>
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_change_pass' %}">Change Password </a></li>
+          </ul>
+          </li>
+          {% endblock %}
+          {% block body %}
+      
+        </header>
+
+    <!-- ======================== -->
+    <div class="section bg-white " >
+        <div class="container bg-white">
+            
+            </div>
+        </div>
+    </div>
+<!-- ============================================================================================================= -->
+<section style="background-color: #eee;" class="bg-white">
+    <div class="container py-5">
+     
+       <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row bg-white">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+{% if res.pro_pic %}
+<img src="{{res.pro_pic.url}}" alt="avatar"class="rounded-circle img-fluid" style="width: 150px;">
+{% else %}
+<img src="{% static '/img/jobs/avatar-1.jpg' %}" alt="avatar"class="rounded-circle img-fluid" style="width: 150px;">
+{% endif %}
+<h5 class="my-3">{{res.first_name}} {{res.last_name}} </h5>
+<p class="text-dark mb-1">{{res.ptitle}}</p> 
+<div class="d-flex justify-content-center mb-2">
+  {% if res.first_name %}
+<a href="{% url 'resume_page' %}"> 
+  <button type="button" class="btn btn-primary">View CV</button></a>
+  {% else %}
+  <a href="{% url 'jobseeker_create_cv' %}"> 
+    <button type="button" class="btn btn-primary">Create Cv</button></a>
+    {% endif %}
+</div></div></div></div>
+<div class="col-lg-8">
+<div class="card mb-4">
+<div class="card-body">
+<div class="row">
+<div class="col-sm-3">
+                  <p class="mb-0 font-weight-bold text-dark">Name :</p>
+                </div>
+                {% if res.first_name %}
+                <div class="col-sm-9">
+                  <p class="text-dark mb-0">{{res.first_name  }} {{res.last_name}}</p>
+                </div>
+                {% else %}
+                <div class="col-sm-9">
+                  
+                  <p class="text-dark mb-0"> {{request.user.first_name}}  {{request.user.last_name}}</p>
+                </div>
+                {% endif %}
+              </div>
+              <hr class="text-white">
+              <div class="row">
+                <div class="col-sm-3">
+                  
+                  <p class="mb-0 font-weight-bold text-dark">Email :</p>
+                </div>
+                <div class="col-sm-9">
+                  {% if res.email %}
+                  <p class="text-dark mb-0">{{res.email}}</p>
+                  {% else %}
+                  <p class="text-dark mb-0">{{request.user.username}}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <hr class="text-white">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 font-weight-bold text-dark">Phone :</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-dark mb-0">{{res.phone}}</p>
+                </div>
+              </div>
+              <hr class="text-white">
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 font-weight-bold text-dark">Linkedlin :</p>
+                </div>
+                
+              
+                <div class="col-sm-9">
+                  <p class="text-dark mb-0">{{res.linkedlin}}</p>
+                </div>
+               
+              </div>
+              <hr class="text-white">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 font-weight-bold text-dark">Date of Birth :</p>
+                </div>
+                
+
+                <div class="col-sm-9">
+                  <p class="text-dark mb-0">{{res.dob}}</p>
+                </div>
+              </div>
+             
+              <hr class="text-white">
+              
+                
+                <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 font-weight-bold text-dark">
+                        Gender :
+                      </p>
+                    </div>
+                    
+                    <div class="col-sm-9">
+                      <p class="text-dark mb-0">{{res.gender}}</p>
+                    </div>
+                    
+                  </div>
+                  <hr class="text-white">
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 font-weight-bold text-dark">Career Objective :</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-dark mb-0">{{res.objective}}</p>
+                    </div>
+                  </div>
+                  
+               
+
+
+
+
+              </div>
+            </div>
+          </div>
+         
+          
+          </div>
+          <!-- education: -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <p class="mb-4"><span class="text-primary font-italic me-1">EDUCATION</span></p>
+                  {% if res.ecourse %}
+                  <p class="mb-1 text-dark font-weight-bold">{{res.education_institute}},{{res.location}} &nbsp; ( {{res.start}} - {{res.end}} )</p>
+                  <p class="mb-1 text-dark" style="font-size: .77rem;">{{res.ecourse}}</p>
+                  {% else %}
+                  <p></p>
+                  {% endif %}
+                  
+                 {% if res.masters_name %}
+                  
+                  <p class="mb-1 text-dark font-weight-bold">{{res.m_college}},{{res.m_location}}  ( {{res.m_start}} - {{res.m_end}} )</p>
+                  <p class="mb-1 text-dark" style="font-size: .77rem;">{{res.masters_name}}</p>
+                  {% else %}
+                  <p class="mt-4 mb-1" style="font-size: .77rem;"></p>
+                  {% endif %}
+                  
+                  
+                  
+                </div>
+              </div>
+            </div>
+            <!-- Experience -->
+            <div class="col-md-6">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <p class="mb-4"><span class="text-primary font-italic me-1">EXPERIENCE :</span> 
+                  </p>
+
+                  
+                  {% if res.exp_title  %}
+                  <p class="mb-1 text-dark font-weight-bold">{{res.exp_title}} {{exp_place}} &nbsp; ( {{res.start_year}} - {{res.end_year}} )</p>
+                  <p class="mb-1 text-dark" style="font-size: .77rem;">{{res.exp_company}}</p>
+                  {% else %}
+                  <p></p>
+                  {% endif %}
+                 {% if res.exp_title2 %}
+                 <p class="mb-1 text-dark font-weight-bold">{{res.exp_title2}} {{exp_place2}} &nbsp; ( {{res.start_year2}} - {{res.end_year2}} )</p>
+                  <p class="mb-1 text-dark" style="font-size: .77rem;">{{res.exp_company2}}</p>
+                  {% else %}
+                  <p></p>
+                  {% endif %}
+                 
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </form>
+                 </div>
+                 </section>
+                
+             
+       
+ 
+{% endblock %}

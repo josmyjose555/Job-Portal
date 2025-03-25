@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>Jobdetails IPSR Jobs - IT jobs kerala South India</title>
+{% endblock %}
+{% block nav %}
+
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'index' %}">Home</a></li>
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'about' %}">About</a></li>
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+
+<li class="nav-item"><a class="nav-link text-dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+    <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+    <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a>
+    {% endblock %}
+
+<!-- ==================== -->
+<!-- Modal -->
+<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+    <div class="modal-dialog  ">
+      <div class="modal-content">
+  
+        <form action="user_register.html">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white m-auto" id="exampleModalLabel" style="font-size: 20px;">Create Your Account For Free</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+              </div>
+  
+    
+            <div class="modal-body">					
+                <div class="form-group ">
+                    <button type="button" class="bg-success btn btn-primary btn-lg btn-block" onclick="location.href='jobseeker_register.html'">Register As Jobseeker</button>
+                    
+                </div>
+                <div class="form-group ">
+                    
+                
+                    <button type="button" class="bg-danger btn btn-primary btn-lg btn-block" onclick="location.href='employer_register.html'">Register As Employer</button>
+                    
+                </div>
+                </div>
+  
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-mdb-dismiss="modal">
+                      Close
+                    </button>
+                   
+                  </div>
+  
+  
+                  </form>
+                  </div>
+                </div>
+              </div>
+              {% block body %}      
+</header>
+
+{% for k in jobh %}
+<div class="page-header ">
+<div class="container bg-info text-white p-5  rounded " >
+<div class="row">
+<div class="col-lg-8 col-md-6 col-xs-12 text-white">
+<div class="breadcrumb-wrapper">
+<div class="img-wrapper ">
+<img src="{{k.logo.url}}" alt=" " width="90%">
+</div>
+<div class="content m-2 ">
+    <h3 class="product-title text-white">{{k.j_title}}</h3>
+    <p class="brand text-white">{{k.company}}</p>
+    <div class="tags text-white">
+    <span><i class="fa-solid fa-briefcase text-white"></i>{{k.exp}}</span>
+    <span><i class="fa-solid fa-indian-rupee-sign text-white"></i> {{k.min_salary}} - {{k.max_salary}} Monthly</span>
+    </div>
+    <div class="tags text-white">
+        <span><i class="fa-solid fa-graduation-cap text-white"></i>{{k.education}}</span>
+    </div>
+    <div class="tags text-white">
+    <span><i class="fa-solid fa-calendar-days text-white"></i> Posted {{k.date_created}}</span>
+    <span><i class="fa-solid fa-calendar-days text-white"></i> Last Date {{k.last_date}}</span>
+    </div>
+        
+    
+        <div class="tags text-white">
+       
+        <span><i class="fa-solid fa-location-dot text-white"></i></i> {{k.location}}</span>
+        </div>
+        <div class="tags text-white">
+            <span>Skills: {{k.skills}} </span>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-xs-12">
+        {% if k.is_end_date %}
+        <a href="#" class="btn btn-white btn-lg text-dark font-weight-bold">Expired</a>
+        {% else %}
+
+    <a href="{% url 'jobseeker_login'%}" class="btn btn-danger btn-lg">Apply</a>
+{% endif %}
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section class="job-detail section p-2">
+    <div class="container">
+    <div class="row justify-content-between">
+    <div class="col-lg-8 col-md-12 col-xs-12">
+    <div class="content-area">
+    <h4 style="font-family:sans-serif ;">Job Description</h4>
+    <p class="text-dark">{{k.job_desc}}
+       
+        </p>
+    
+    
+    
+    
+    <hr>
+    <div class="text-dark">
+    <h5 class="text-dark">Job Particulars</h5>
+    <p class="text-dark"><span><strong>Role :</strong></span>{{k.category}}</p>
+    <p class="text-dark"><span><strong>Education :</strong></span> {{k.education}}</p>
+    <p class="text-dark"><span><strong>Experience :</strong></span>  {{k.exp}}</p>
+    <p class="text-dark"><span><strong>Employment Type:</strong></span>   {{k.type}}</p>
+    <p class="text-dark"><span><strong>Number of Vacancies:</strong></span>  {{k.no_of_vacancy}}</p>
+    <p class="text-dark"><span><strong>Skills:</strong></span> {{k.skills}}</p>
+    </div>
+    </div>
+    </div>
+    
+
+<!-- ========== -->
+
+
+  
+<!--  -->
+
+<div class="col-lg-4 col-md-12 col-xs-12">
+    <div class="sideber border">
+    <div class="widghet">
+    <h3 style="font-family:sans-serif ;"class="text-center"><i class="fa-solid fa-location-dot text-info text-center" style="font-size: 20px;"></i> Location</h3>
+    <hr>
+    <div class="job-detail-location p-2">
+        <div class="job-details-desc-item">
+            <div class="float-left mr-2">
+                <i class="fa-solid fa-building-columns text-info"></i>
+            </div>
+            <p class="mb-2 f-14 text-dark">:{{k.company}}</p>
+        </div>
+    <div class="job-details-desc-item">
+        <div class="float-left mr-2">
+            <i class="fa-solid fa-envelope text-info"></i>
+        </div>
+        <p class="mb-2 f-14 text-dark">: {{k.email}}</p>
+    </div>
+    <div class="job-details-desc-item">
+        <div class="float-left mr-2">
+            <i class="fa-solid fa-globe text-info"></i>
+        </div>
+        <p class="text-dark mb-2 f-14">: {{k.c_website}}</p>
+    </div>
+
+    <div class="job-details-desc-item">
+        <div class="float-left mr-2">
+            <i class="fa-solid fa-mobile-screen-button text-info"></i>
+        </div>
+        <p class="text-dark mb-2 f-14">: {{k.mobile}}</p>
+    </div>
+
+
+    <div class="widghet"><br>
+<h3 style="font-size: 20px;">Share This Job</h3>
+<div class="share-job">
+
+<ul class="mt-4 footer-social">
+<li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+<li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
+<li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+
+<li><a href="instagram"><i class=" lni lni-instagram-filled " ></i></a></li>
+</ul>
+<!-- <div class="meta-tag">
+<span class="meta-part"><a href="#"><i class="lni-star"></i> Write a Review</a></span>
+<span class="meta-part"><a href="#"><i class="lni-warning"></i> Reports</a></span>
+<span class="meta-part"><a href="#"><i class="lni-share"></i> Share</a></span> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--  -->
+<section class="job-detail">
+    <div class="container">
+    <div class="row justify-content-between">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="content-area">
+    <h4 style="font-family:sans-serif ;">About Company</h4>
+    <p class="text-dark"> {{k.c_overview}}</p>
+</div></div></div></div><br>
+</section>
+<!--  -->
+<!-- <section id="featured" class="section bg-gray pb-45 ">
+<div class="container">
+<h4 class="small-title text-left">Similar Jobs</h4>
+<div class="row">
+<div class="col-lg-6 col-md-12 col-xs-12 bg-white border">
+<a class="job-listings-featured" href="job-details.html">
+<div class="row">
+<div class="col-lg-6 col-md-6 col-xs-12 bg-white">
+<div class="job-company-logo">
+<img src="assets/img/features/img1.png" alt="">
+</div>
+<div class="job-details">
+<h3>Software Engineer</h3>
+<span class="company-neme">MizTech</span>
+<div class="tags">
+<span><i class="lni-map-marker"></i> New York</span>
+<span><i class="lni-user"></i>John Smith</span>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-xs-12 text-right ">
+<div class="tag-type">
+<sapn class="heart-icon">
+<i class="lni-heart"></i>
+</sapn>
+<span class="full-time">Full Time</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="col-lg-6 col-md-12 col-xs-12 bg-white border">
+<a class="job-listings-featured" href="job-details.html">
+<div class="row">
+<div class="col-lg-6 col-md-6 col-xs-12 bg-white">
+<div class="job-company-logo">
+<img src="assets/img/features/img2.png" alt="">
+</div>
+<div class="job-details">
+<h3>Graphic Designer</h3>
+<span class="company-neme">Hunter Inc.</span>
+<div class="tags">
+<span><i class="lni-map-marker"></i> New York</span>
+<span><i class="lni-user"></i>John Smith</span>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-xs-12 text-right">
+<div class="tag-type">
+<sapn class="heart-icon">
+<i class="lni-heart"></i>
+</sapn>
+<span class="part-time">Part Time</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section> -->
+{% endfor %}
+{% endblock %}
+<!--    ================== FOOTER =========================================== -->
+ 

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>About Us:IPSR Jobs</title>
+{% endblock %}
+{% block nav %}
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'index' %}">Home</a></li>
+<li class="nav-item active"><a class="  nav-link" href="{% url 'about' %}">About</a></li>
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="user_register.html">Register </a></li> -->
+<li class="nav-item"><a class="nav-link text-dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+  <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+  <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a>
+  {% endblock %}
+
+{% block body %}
+</header>
+<!-- Page Header Start -->
+    <section class="section"> </section>
+      <div class="container">
+        
+              <h3 class="text-success text-center">ABOUT US</h3>
+            </div>
+         <!-- Main container Start -->  
+    <div class="about section">
+      <div class="container">
+        <div class="row">  
+          <div class="col-lg-6 col-md-12 col-xs-12">
+            <div class="about-content">
+              <h3 class="text-info">About IPSR Job Portal</h3>
+              <p class="text-dark">
+                <a class='text-success'href="{% url 'index' %}">www.ipsrjobs.com </a>, an initiative of Ipsr Solutions Ltd, the comprehensive Jobs & Career Portal, serves top Employers in India and abroad.
+<br>
+ 
+
+                Ipsrjobs.com, is a team of experienced professionals aimed to provide the most efficient and cost effective hiring methods for multinational companies as well as medium sized businesses to entrepreneurial start-ups across several industries. In the past 22 years, Ipsrjobs has helped more than 25,000 professionals to shape up their career.  <br>
+                
+                 
+                
+                The journey since 2005 till date has made Ipsrjobs is the most preferred recruitment service provider especially for companies in Infopark and Technopark. We have a well-established track record in recruiting junior to senior level professionals and our services have always met with great customer satisfaction. We are specialised in Experienced Manpower Sourcing, Exclusive Recruitment Drives, Employee Outsourcing, Jobs on Contract and Recruitment Consulting.
+                
+                 </p>
+             
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-xs-12">
+          <a href="{% url 'about' %}"><img class="img-fluid float-right" src="{% static 'img/about/ab.jpg' %}" alt="about_us_image">    </a>   
+          </div>
+        </div>
+      </div>
+    </div>
+   
+       {% endblock %}  
+
+    

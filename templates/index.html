@@ -1,0 +1,650 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>IPSR Jobs - IT jobs kerala South India</title>
+{% endblock %}
+{% block nav %}
+<li class="nav-item active"><a class="  nav-link" href="{% url 'index' %}">Home</a></li>
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'about' %}">About</a></li>
+<li class="nav-item "><a class="text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+
+<li class="nav-item"><a class="nav-link text-dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+  <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+  <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a>
+  
+{% endblock %}
+
+<!-- ==================== -->
+<!-- Modal -->
+<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+  <div class="modal-dialog  ">
+    <div class="modal-content">
+
+      <form action="user_register.html">
+          <div class="modal-header bg-info">
+              <h5 class="modal-title text-white m-auto" id="exampleModalLabel" style="font-size: 20px;">Create Your Account For Free</h5>
+              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+  
+          <div class="modal-body">					
+              <div class="form-group ">
+                  <button type="button" class="bg-success btn btn-primary btn-lg btn-block" onclick="location.href='jobseeker_register.html'">Register As Jobseeker</button>
+                  
+              </div>
+              <div class="form-group ">
+                  
+              
+                  <button type="button" class="bg-danger btn btn-primary btn-lg btn-block" onclick="location.href='employer_register.html'">Register As Employer</button>
+                  
+              </div>
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-info" data-mdb-dismiss="modal">
+                    Close
+                  </button>
+                 
+                </div>
+
+
+                </form>
+                </div>
+              </div>
+            </div>
+          
+
+
+
+
+
+           
+
+  
+{% block body %}
+<div class="container">
+<div class="row space-100 justify-content-center">
+<div class="col-lg-10 col-md-12 col-xs-12">
+<div class="contents">
+<h2 class="head-title text-success">Find the job that fits your life</h2>
+<p>Find Your New Job Easiest Way With IPSR  Jobs</p>
+<div class="job-search-form">
+<form method="get" action="{% url 'job_search' %}">
+<div class="row">
+<div class="col-lg-5 col-md-6 col-xs-12">
+<div class="form-group">
+<input class="form-control" type="text" placeholder="Job Title or keyword or skills " name="sk">
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12">
+<div class="form-group">
+<div class="search-category-container">
+<label class="styled-select"> 
+<input name="location" list="locations" placeholder="Locations" class="styled-select form-control "> <i class="lni-map-marker"></i>
+<datalist id="locations" class="styled-select" >
+ 
+<option value="Thiruvananthapuram"> </option>
+<option value="Kollam"></option>
+<option value="Pathanamthitta"></option>
+<option value="Alappuzha"></option>
+<option value="Kottayam"></option>
+<option value="Idukki"></option>
+<option value="Ernakulam"></option>
+<option value="Thrissur"></option>
+<option value="Palakkad"></option>
+<option value="Malappuram"></option>
+<option value="Kozhikode"></option>
+<option value="Wayanad"></option>
+<option value="Kannur"></option>
+<option value="Kasaragod"></option>
+</datalist>
+</label>
+</div>
+
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12">
+ <div class="form-group">
+<div class="search-category-container">
+<input name="categorys" list="category" placeholder="Job Category" class="styled-select form-control " autocomplete="off">
+<datalist id="category" class="styled-select">
+
+  {% for r in categories %}
+  <option value="{{r}}">{{r}} </option>
+  {% endfor %}
+</datalist>
+</label>
+</div>
+<i class="lni-layers"></i>
+</div>
+</div>
+<div class="col-lg-1 col-md-6 col-xs-12">
+  <a href="{% url 'joblist' %}"><button type="submit" class="button bg-danger" style="text-align: center;"><i class="lni-search"></i></button></a>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-------------search button ends     ------>
+
+
+
+
+<!-- =============================================================== -->
+ <!-- Edit Modal HTML -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--  -->
+<!-- 
+<section class="category section bg-gray">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title text-success" >Browse Categories</h2>
+<p class="text-dark">Most popular categories of portal, sorted by popularity</p>
+</div>
+<div class="row">
+<div class="col-lg-3 col-md-6 col-xs-12 f-category ">
+<a href="{% url 'joblist' %}" >
+<div class="icon bg-color-1">
+<i class="lni-home"></i>
+</div>
+<h3 class="text-danger">Finance</h3>
+<p class="text-dark">(4286 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category ">
+  <a href="joblist.html">
+<div class="icon bg-color-2">
+<i class="lni-world"></i>
+</div>
+<h3 class="text-danger">Sale/Markting</h3>
+<p class="text-dark">(2000 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category ">
+  <a href="joblist.html">
+<div class="icon bg-color-3">
+<i class="lni-book"></i>
+</div>
+<h3 class="text-danger">Education/Training</h3>
+<p class="text-dark">(1450 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category border-right-0">
+  <a href="joblist.html">
+<div class="icon bg-color-4">
+<i class="lni-display"></i>
+</div>
+<h3 class="text-danger">Technologies</h3>
+<p class="text-dark">(5100 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category border-bottom-0 ">
+  <a href="joblist.html">
+<div class="icon bg-color-5">
+<i class="lni-brush"></i>
+</div>
+<h3 class="text-danger">Art/Design</h3>
+<p class="text-dark">(5079 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category border-bottom-0 ">
+  <a href="joblist.html">
+<div class="icon bg-color-6">
+<i class="lni-heart"></i>
+</div>
+<h3 class="text-danger">Healthcare</h3>
+<p class="text-dark">(3235 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category border-bottom-0 ">
+  <a href="joblist.html">
+<div class="icon bg-color-7">
+<i class="lni-funnel"></i>
+</div>
+<h3 class="text-danger">Science</h3>
+<p class="text-dark">(1800 jobs)</p>
+</a>
+</div>
+<div class="col-lg-3 col-md-6 col-xs-12 f-category border-right-0 border-bottom-0 ">
+<a href="joblist.html">
+<div class="icon bg-color-8">
+<i class="lni-cup"></i>
+</div>
+<h3 class="text-danger">Food Services</h3>
+<p class="text-dark">(4286 jobs)</p>
+</a>
+</div>
+</div>
+</div>
+</section> -->
+<!-- =============================================================================================================== -->
+
+<section id="job-listings" class="section">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title text-success" >Latest Jobs</h2>
+<p class="text-dark" >Hand-picked jobs featured depending on popularity and benifits</p>
+</div>
+<div class="row">
+  {% for j in job %}
+  {% if j.is_end_date %}
+<div class="col-lg-6 col-md-12 col-xs-12 bg-white">
+<a class="job-listings-featured" href="{% url 'h_jobdetails' j.id %}">
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-xs-12  bg-white">
+  
+<div class="company-logo-img " style="float:none;"><img src="{{j.logo.url}}" style="float:none;" alt="" width="40%" class="img-fluid mx-auto d-block"></div>
+<!-- --------------------------------------------------------------------- -->
+<div class="job-details d-inline" > 
+  
+ <h3 class="product-title" >{{j.j_title}}</h3>
+ <span class="text-dark" >{{j.company}}</span>
+ <div class="tags">
+  
+ <span class="text-dark "><i class="fa-solid fa-briefcase text-dark"></i> Experience : {{j.exp}}</span><br>
+  <p><span class="text-dark"><i class="fa-solid fa-graduation-cap text-dark "></i>{{j.education}}</span></p>
+  <span class="text-dark d-inline"><span class="font-weight-bold text-info">Skills:</span>{{j.skills}}</span><br>
+  <span class="text-dark "><i class="fa-solid fa-location-dot text-dark"></i></i> {{j.location}}</span><br>
+  <p><span class="text-dark d-inline" style="text-align: left;"><span class=" text-dark font-weight-bold d-inline">Posted:<br></span>{{j.date_created}}</span></p>
+  <!-- <br><span class=" text-white  font-weight-bold text-right  border border-text bg-warning p-1 ">Post Expired</span></p> -->
+  
+</div>
+
+</div>
+
+</div>
+<div class="col-lg-6 col-md-6 col-xs-12 text-right bg-white">
+<div class="tag-type">
+  <span class="badge badge-success">{{j.type}}</span><br><br>
+<!-- <span class="heart-icon ">
+<i class="lni-heart"></i>
+</span> -->
+<span class="full-time bg-danger text-light">&nbsp;&nbsp;&nbsp;View &nbsp;&nbsp;&nbsp;</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+<!-- ------------------------------------------------------------------------------------ -->
+{% else %}
+<div class="col-lg-6 col-md-12 col-xs-12 bg-white">
+  <a class="job-listings-featured" href="{% url 'h_jobdetails' j.id %}">
+  <div class="row">
+  
+  <div class="col-lg-6 col-md-6 col-xs-12 bg-white">
+  <div class="company-logo-img" style="float:none;"><img src="{{j.logo.url}}"  style="float:none;" alt="" width="40%" class="img-fluid mx-auto d-block"></div>
+  <!-- --------------------------------------------------------------------- -->
+  <div class="job-details d-inline">
+   <h3 class="product-title ">{{j.j_title}}</h3>
+   <span class="text-dark">{{j.company}}</span>
+   <div class="tags">
+   <span class="text-dark"><i class="fa-solid fa-briefcase text-dark"></i> Experience : {{j.exp}}</span><br>
+    <p><span class="text-dark"><i class="fa-solid fa-graduation-cap text-dark "></i>{{j.education}}</span></p>
+    <span class="text-dark d-inline"><span class="font-weight-bold text-info d-inline">Skills:</span>{{j.skills}}</span><br>
+    <span class="text-dark "><i class="fa-solid fa-location-dot text-dark"></i> {{j.location}}</span><br>
+    <p><span class="text-dark d-inline"  style="text-align: left;"><span class=" text-dark font-weight-bold d-inline">Posted:<br></span>{{j.date_created}}</span></p>
+  </div>
+  
+  </div>
+  
+  </div>
+  <div class="col-lg-6 col-md-6 col-xs-12 text-right bg-white">
+  <div class="tag-type">
+    <span class="badge badge-success">{{j.type}}</span><br><br>
+  <!-- <span class="heart-icon ">
+  <i class="lni-heart"></i>
+  </span> -->
+  <span class="full-time bg-danger text-light">View & Apply</span>
+  </div>
+  </div>
+  </div>
+  </a>
+  </div>
+  
+{% endif %}
+{% endfor %}
+
+<div class="col-12 text-center mt-4">
+<a href="{% url 'joblist' %}" class="btn btn-common bg-danger">Browse All Jobs</a>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+ <div id="browse-jobs" class="section bg-info ">
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-md-12 col-sm-12">
+<div class="text-wrapper">
+<div>
+<h3 class="text-light">7,000+ Browse Jobs</h3>
+<p class="text-light">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide. The right job is out there.</p>
+<a class="btn btn-common bg-danger" href="{% url 'joblist' %}">Search jobs</a>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 col-sm-12">
+<div class="img-thumb">
+<img class="img-fluid" src="{% static '/img/search.png' %}" alt="">
+</div>
+</div>
+</div>
+</div>
+</div>
+<section>
+  
+  <div class="counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              
+                <div class="employees">
+                    <p class="counter-count">879</p>
+                    <p class="employee-p"> Companies</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="customer">
+                    <p class="counter-count">954</p>
+                    <p class="customer-p">Sectors</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="design">
+                    <p class="counter-count">1050</p>
+                    <p class="design-p">Vacancies </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="order">
+                    <p class="counter-count">652</p>
+                    <p class="order-p">Job Seekers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="how-it-works section bg-light">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title text-success">How It Works?</h2>
+<p class="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<div class="work-process">
+<span class="process-icon ">
+<i class="lni-user"></i>
+</span>
+<h4 class="text-success">Create an Account</h4>
+<p class="text-dark">Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+</div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<div class="work-process step-2">
+<span class="process-icon">
+<i class="lni-search"></i>
+</span>
+<h4 class="text-success">Search Jobs</h4>
+<p class="text-dark">Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+</div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<div class="work-process step-3">
+<span class="process-icon">
+<i class="lni-cup"></i>
+</span>
+<h4 class="text-success">Apply</h4>
+<p class="text-dark">Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section id="testimonial" class="section">
+  <div class="section-header">
+    <h2 class="section-title text-success">Clients Review</h2>
+    <p class="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
+    </div>
+<!-- Carousel wrapper -->
+<!-- Carousel wrapper -->
+<div id="carouselExampleControls" class="carousel slide text-center carousel-dark"  data-mdb-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="rounded-circle shadow-1-strong mb-4"
+        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
+        style="width: 150px;" />
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h5 class="mb-3">Maria Kate</h5>
+          <p>Photographer</p>
+          <p class="text-muted">
+            <i class="fas fa-quote-left pe-2"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+            nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+            fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+            doloremque.
+          </p>
+        </div>
+      </div>
+      <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="far fa-star fa-sm"></i></li>
+      </ul>
+    </div>
+    <div class="carousel-item">
+      <img class="rounded-circle shadow-1-strong mb-4"
+        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+        style="width: 150px;" />
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h5 class="mb-3">John Doe</h5>
+          <p>Web Developer</p>
+          <p class="text-muted">
+            <i class="fas fa-quote-left pe-2"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+            nesciunt sint eligendi reprehenderit reiciendis.
+          </p>
+        </div>
+      </div>
+      <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="far fa-star fa-sm"></i></li>
+      </ul>
+    </div>
+    <div class="carousel-item">
+      <img class="rounded-circle shadow-1-strong mb-4"
+        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="avatar" style="width: 150px;" />
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h5 class="mb-3">Anna Deynah</h5>
+          <p>UX Designer</p>
+          <p class="text-muted">
+            <i class="fas fa-quote-left pe-2"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+            nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+            fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+            doloremque.
+          </p>
+        </div>
+      </div>
+      <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="far fa-star fa-sm"></i></li>
+      </ul>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
+    data-mdb-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls"
+    data-mdb-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Carousel wrapper -->
+  </section>
+  <!-- Carousel wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section> -->
+  <!--====== BLOG PART START ======-->
+<!-- <section class="blog-area pb-5 section bg-light">
+  <h3 class="text-center text-success">Blog</h3>
+  <div class="container">
+     <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-8 col-sm-10">
+           <div class="single-blog blog-style-one">
+              <div class="blog-image">
+                 <a href="javascript:void(0)"
+                    ><img src="https://cdn.ayroui.com/1.0/images/blog/1.jpg" alt="Blog"
+                    /></a>
+                 <a href="javascript:void(0)" class="category">Technology</a>
+              </div>
+              <div class="blog-content text-dark">
+                 <h6 class="blog-title">
+                    <a href="#">
+                    Budget-Friendly Design Ideas to Transform Your Office
+                    </a>
+                 </h6>
+                 <span><i class="lni lni-calendar"></i> Mar 23, 2022</span>
+                 <span><i class="lni lni-comments-alt"></i> 24 Comment</span>
+                 <p class="text">
+                    Create a workspace your team will love with these money-saving
+                    interior Ui/Ux design tips Learn how People.
+                 </p>
+                 <a class="more" href="javascript:void(0)">READ MORE</a>
+              </div>
+           </div> -->
+           <!-- single blog -->
+        <!-- </div>
+        <div class="col-lg-4 col-md-8 col-sm-10">
+           <div class="single-blog blog-style-one">
+              <div class="blog-image">
+                 <a href="javascript:void(0)"
+                    ><img src="https://cdn.ayroui.com/1.0/images/blog/2.jpg" alt="Blog"
+                    /></a>
+                 <a href="javascript:void(0)" class="category">Lifestyle</a>
+              </div>
+              <div class="blog-content">
+                 <h6 class="blog-title text-dark">
+                    <a href="javascript:void(0)">
+                    Budget-Friendly Design Ideas to Transform Your Office
+                    </a>
+                 </h6>
+                 <span><i class="lni lni-calendar"></i> Mar 23, 2022</span>
+                 <span><i class="lni lni-comments-alt"></i> 24 Comment</span>
+                 <p class="text">
+                    Create a workspace your team will love with these money-saving
+                    interior Ui/Ux design tips Learn how People.
+                 </p>
+                 <a class="more" href="javascript:void(0)">READ MORE</a>
+              </div>
+           </div> -->
+           <!-- single blog -->
+        <!-- </div>
+        <div class="col-lg-4 col-md-8 col-sm-10">
+           <div class="single-blog blog-style-one">
+              <div class="blog-image">
+                 <a href="javascript:void(0)"
+                    ><img src="https://cdn.ayroui.com/1.0/images/blog/3.jpg" alt="Blog"
+                    /></a>
+                 <a href="javascript:void(0)" class="category">Science</a>
+              </div>
+              <div class="blog-content">
+                 <h6 class="blog-title text-dark">
+                    <a href="javascript:void(0)">
+                    Budget-Friendly Design Ideas to Transform Your Office
+                    </a>
+                 </h6>
+                 <span><i class="lni lni-calendar"></i> Mar 23, 2022</span>
+                 <span><i class="lni lni-comments-alt"></i> 24 Comment</span>
+                 <p class="text">
+                    Create a workspace your team will love with these money-saving
+                    interior Ui/Ux design tips Learn how People.
+                 </p>
+                 <a class="more" href="javascript:void(0)">READ MORE</a>
+              </div>
+           </div> -->
+           <!-- single blog -->
+        <!-- </div> -->
+     <!-- </div> -->
+     <!-- row -->
+  <!-- </div> -->
+  <!-- container -->
+<!-- </section> -->
+<!--====== BLOG PART ENDS ======-->
+<!-- </section> -->
+{% endblock %}
+

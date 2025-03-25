@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>IPSR Jobs - IT jobs kerala South India</title>
+{% endblock %}
+{% block nav %}
+
+<li class="nav-item "><a class="text-dark  nav-link" href="{% url 'index' %}">Home</a></li>
+
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'about' %}">About</a></li>
+
+<li class="nav-item "><a class="text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+
+<li class="nav-item"><a class="nav-link text-dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+  <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+  <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a>
+ 
+{% endblock %}
+  
+ 
+
+<!-- Search -->
+{% block body %}
+</header>
+<!-------------search button ends     ------>
+
+    <!-- Page Header Start -->
+  <section class="section"></section>
+    <!-- Page Header End --> 
+
+    <!-- Model -->
+    <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+      <div class="modal-dialog  ">
+        <div class="modal-content">
+    
+          <form action="user_register.html">
+              <div class="modal-header bg-info">
+                  <h5 class="modal-title text-white m-auto" id="exampleModalLabel" style="font-size: 20px;">Create Your Account For Free</h5>
+                  <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+    
+      
+              <div class="modal-body">					
+                  <div class="form-group ">
+                      <button type="button" class="bg-success btn btn-primary btn-lg btn-block" onclick="location.href='user_register.html'">Register As Jobseeker</button>
+                      
+                  </div>
+                  <div class="form-group ">
+                      
+                  
+                      <button type="button" class="bg-danger btn btn-primary btn-lg btn-block" onclick="location.href='employer_register.html'">Register As Employer</button>
+                      
+                  </div>
+                  </div>
+    
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-info" data-mdb-dismiss="modal">
+                        Close
+                      </button>
+                     
+                    </div>
+    
+    
+                    </form>
+                    </div>
+                  </div>
+                </div>
+
+
+    <!-- Main container Start -->  
+    <div class="about section">
+      <div class="container">
+        
+            <div class="about-content">
+              <h3 class="text-success">Privacy Policy</h3>
+              <p class="text-dark">IPSR respects the privacy of its Users and is bound to protect the same.<br>
+
+                IPSR shall reveal the information provided by the User to a third party only for the purpose of recruitment. The information is collected from the User through various events/ recruitment drives/ technical orientation sessions/ training programmes/advertisement campaigns conducted by IPSR. The information thus collected pertains to the resumes,<br> E Mail address and name of the User and is incorporated into the database of <a href="index.html">www.ipsrjobs.com</a>. This database is for the exclusive use of IPSR.<br>
+                
+                IPSR may contact the Users, with any important information related to <a href="index.html">www.ipsrjobs.com</a>, recruitment or career development of the users.
+                
+                <br>Thank you for using <a href="index.html">www.ipsrjobs.com</a>. We would like to hear from you on a regular basis. Please let us know your opinions and suggestions by e-mailing <span class="text-info">tcs@ipsr.org</span> We assure you to provide the best of our tools and services to build a career that suits your qualification and skills.</p>
+                </div>
+                </div>
+                </div>
+                <!--    ================== FOOTER =========================================== -->
+ 
+
+                {% endblock %}

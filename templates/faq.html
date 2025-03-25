@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>IPSR Jobs - IT jobs kerala South India</title>
+{% endblock %}
+{% block nav %}
+
+<li class="nav-item "><a class="text-dark  nav-link" href="{% url 'index' %}">Home</a></li>
+
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'about' %}">About</a></li>
+
+<li class="nav-item "><a class="text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+
+<li class="nav-item"><a class="nav-link text-dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+  <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+  <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a>
+ 
+{% endblock %}
+  
+ 
+
+<!-- Search -->
+{% block body %}
+</header>
+<!--Section: FAQ-->
+<section class="section"></section>
+<section class="section container bg-light p-3 m-auto">
+  <h3 class="text-center mb-4 pb-2 text-success fw-bold">FAQ</h3>
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+         How do I register on ipsrjobs.com?</h6>
+      <p class="text-dark">
+        Click on register now link, it will take you to application form. Fill out all details, upload your resume and submit.
+      </p>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+
+      </i> Does it cost anything to register?</h6>
+      <p class="text-dark">
+        Registration is absolutely free, no need to pay anything at any stage of selection
+      </p>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>  
+        What is Ipsr registration number?
+      </h6>
+      <p class="text-dark">
+        Ipsr registration number is the unique registration number for students who have undergone training from Ipsr. For non Ipsr students leave space as blank.
+      </p>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+      <!-- <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-info pe-2"></i> -->
+        <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+        Do I need to upload my photo?
+
+
+      </h6>
+      <p class="text-dark">
+        Photo is not mandatory. 90% profile completeness is enough
+      </p>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+      <!-- <h6 class="mb-3 text-primary"><i class="fas fa-home text-primary pe-2"></i> -->
+        <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+         Do I need to upload my resume?
+      </h6>
+      <p class="text-dark">Resume is mandatory. When you apply for a job, your resume will be going to the company. If you don’t upload resume your application will not be received at the company.</p>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+      <!-- <h6 class="mb-3 text-primary"><i class="fas fa-book-open text-primary pe-2"></i> -->
+        <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+         What if I forget my user name or password?</h6>
+      <p class="text-dark">
+        You can click on Forget password link to reset your password
+      </p>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+      <!-- <h6 class="mb-3 text-primary"><i class="fas fa-book-open text-primary pe-2"></i> -->
+        <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+         Do I need to complete my profile?</h6>
+      <p class="text-dark">
+        Yes, you need to complete your profile more than 85%
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <!-- <h6 class="mb-3 text-primary"><i class="fas fa-book-open text-primary pe-2"></i>  -->
+        <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+        Do I need a valid email id for registration?</h6>
+      <p class="text-dark">
+        Yes, further communication from companies might be through emails. So you need an email id to register your profile.
+      </p>
+    </div>
+    
+    <div class="col-md-6 col-lg-4 mb-4">
+      <!-- <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-info pe-2"></i>  -->
+        <h6 class="mb-3 text-success fw-bold"><i class="far fa-paper-plane text-success pe-2"></i>
+        How can I update/edit my Profile?
+
+      </h6>
+      <p class="text-dark">
+        Login to your profile and go to profile settings, there you can update your profile details
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+        Who all have access to my Resume?
+
+      </h6>
+      <p class="text-dark">
+        Only Ipsrjobs administrator has the access to your profile and resume.
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+
+        How do I obtain a list of job openings?
+      </h6>
+      <p class="text-dark">
+        You can either check latest vacancies or you can search any job category in the search box
+
+
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+
+        How do I know if this job is still available?
+      </h6>
+      <p class="text-dark">
+        You can apply only for active jobs. If the job is not available, then apply now button will be displaying expired.
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+        How do I find out the status of my application?
+
+      </h6>
+      <p class="text-dark">
+        Your application will be directly going to companies, if you get shortlisted companies will directly contact you for further rounds.
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+        
+        What happens when I submit my application?
+      </h6>
+      <p class="text-dark">
+        Your application will be directly going to companies, if you get shortlisted companies will directly contact you for further rounds.
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+        How will the department contact me?
+
+
+
+      </h6>
+      <p class="text-dark">
+        HR from the companies will take your contact details from your resume and directly call you. Make sure contact details in your resume is up to date to get interview calls.
+      </p>
+    </div>
+    <!--  -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+        What are job alerts?
+
+      </h6>
+      <p class="text-dark">
+        We will send jobs matching your profile to your email id
+      </p>
+    </div>
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+    How do I create an effective job alert?
+
+  </h6>
+  <p class="text-dark">
+    You can subscribe our newsletter by submitting your email id at Newsletter window at right bottom corner (Footer) of Ipsrjobs home page
+  </p>
+</div>
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+    
+    How do I stop job alerts?
+  </h6>
+  <p class="text-dark">
+    You can unsubscribe your email id from our newsletter database.
+  </p>
+</div>
+
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success pe-2"></i> 
+    
+    Why do I get jobs that aren't exact matches?
+  </h6>
+  <p class="text-dark">
+    You might have chosen categories wrongly.
+  </p>
+</div>
+
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-sucess pe-2"></i> 
+    I am not getting enough jobs in my inbox. What should I do?
+
+  </h6>
+  <p class="text-dark">
+    Subscribe Newsletter by submitting your email id at Subscribe Newsletter window at the right bottom footer.
+
+What is the help line number of ipsrjobs?
+
+9446922478. Call us between 9:00 AM and 5:00 PM for urgent matters only.
+  </p>
+</div>
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success  pe-2"></i> 
+  
+    How much does it cost to post a job?
+
+  </h6>
+  <p class="text-dark">
+    Job posting is absolutely free.
+  </p>
+</div>
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success  pe-2"></i> 
+  
+    How do I post a job?
+
+  </h6>
+  <p class="text-dark">
+    You can directly submit your details at Post Vacancies link at home page. (http://www.ipsrjobs.com/employer_zones/post_vacancy)
+  </p>
+</div>
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success  pe-2"></i> 
+  
+    How long does a job post remain on the site?
+
+  </h6>
+  <p class="text-dark">
+    Job posting will be active for a period of minimum one week, can be extended based on request.
+  </p>
+</div>
+<!--  -->
+<div class="col-md-6 col-lg-4 mb-4">
+  <h6 class="mb-3 text-success font-weight-bold"><i class="far fa-paper-plane text-success  pe-2"></i> 
+    Is there any limitations for number of postings? 
+
+  </h6>
+  <p class="text-dark">
+    No you can post any number of vacancies.
+  </p>
+</div>
+<!--  -->
+
+
+
+
+
+
+
+  </div>
+</section><br><br>
+<!--Section: FAQ-->
+{% endblock %}
+
+
+
+
+

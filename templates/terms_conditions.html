@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>IPSR Jobs - IT jobs kerala South India</title>
+{% endblock %}
+{% block nav %}
+
+<li class="nav-item "><a class="text-dark  nav-link" href="{% url 'index' %}">Home</a></li>
+
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'about' %}">About</a></li>
+
+<li class="nav-item "><a class="text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+
+<li class="nav-item"><a class="nav-link text-dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+  <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+  <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a>
+ 
+{% endblock %}
+  
+
+{% block body %}
+</header>
+<!-- Page Header Start -->
+<section class="section"></section>
+  <!-- Page Header End --> 
+  <div class="about section">
+    <div class="container">
+      
+        
+          <div class="about-content">
+            <h3 class="text-success">Terms and Conditions</h3>
+            
+            <p class="text-dark">Candidates are advised to read this page carefully before starting to use <a href="{% url 'index' %}" target="_blank">ipsrjobs.com</a> and its services. By accepting the terms and conditions you are agreeing to follow the rules and regulations of use. IPSR may revise the terms and conditions from time to time. You may visit the site on a regular basis for the reviewed terms and conditions.</p>
+
+        
+            <ul style="list-style:circle ;">
+            <li class="text-dark" style="list-style:disc">IPSR is not directly or indirectly responsible for misuse of user account or information by a third party. User id and password of the user account must be kept confidential by the user; IPSR shall not be liable for any damage or modification to the user account by any third parties.</li>
+            <li class="text-dark" style="list-style:disc">The username/ password / user account allotted is unique to each user.</li>
+            <li class="text-dark" style="list-style:disc">The information provided by the user for registration and account creation in <a href="{% url 'index' %}" target="_blank">ipsrjobs.com</a> such as e mail address, phone number, educational qualifications, work experience details etc. should be genuine and error-free. IPSR is not liable for any miscommunications or consequences thereof, occurring due to false/ fake information provided by the User.  </li>
+            <li class="text-dark" style="list-style:disc">IPSR reserves the right to add, remove or modify the terms and conditions, content, services, user access method etc at any time without any advance notifications.  </li>
+            <li class="text-dark" style="list-style:disc">Users are responsible for verifying the genuineness and reliability of the jobs published in <a href="{% url 'index' %}" target="_blank">ipsrjobs.com</a>. IPSR is not liable for any fake information pertaining to the contact details, job notifications etc displayed by a third party.  </li>
+            <li class="text-dark" style="list-style:disc">Users shall not edit or reproduce any matter in the portal including contents, design, logo, database or any other information on the portal. IPSR shall proceed to legal action against such activities and shall not be responsible for any consequences whatsoever.  </li>
+            <li class="text-dark" style="list-style:disc">If any party is found to be responsible for the violation of the Terms & Conditions, IPSR may proceed to take legal action against the party beginning with the cancellation of the User Account in question. Further legal actions are subject to the jurisdiction of the Kerala State. IPSR also reserves the right to terminate/ cancel the User Account as and when it proposes without any prior notification.  </li>
+            <li class="text-dark" style="list-style:disc">IPSR shall not be responsible for troubles to the user accounts caused by internet failure, virus attack or any other unauthorized access to the portal. </li>
+            </ul>
+        </div>
+                  
+  </div>
+  </div>
+  <!-- Model -->
+  {% endblock %}
+  <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+    <div class="modal-dialog  ">
+      <div class="modal-content">
+  
+        <form action="user_register.html">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white m-auto" id="exampleModalLabel" style="font-size: 20px;">Create Your Account For Free</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+              </div>
+  
+    
+            <div class="modal-body">					
+                <div class="form-group ">
+                    <button type="button" class="bg-sucess btn btn-primary btn-lg btn-block" onclick="location.href='user_register.html'">Register As Jobseeker</button>
+                    
+                </div>
+                <div class="form-group ">
+                    
+                
+                    <button type="button" class="bg-danger btn btn-primary btn-lg btn-block" onclick="location.href='employer_register.html'">Register As Employer</button>
+                    
+                </div>
+                </div>
+  
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-mdb-dismiss="modal">
+                      Close
+                    </button>
+                   
+                  </div>
+  
+  
+                  </form>
+                  </div>
+                </div>
+              </div>
+
+
+
+  <!--  -->
+  

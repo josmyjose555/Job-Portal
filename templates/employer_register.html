@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+
+<title>Employer Registration</title>
+{% endblock %}
+
+    
+{% block nav %}
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'index' %}">Home</a></li>
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'about' %}">About</a></li>
+<li class="nav-item "><a class=" text-dark nav-link" href="{% url 'joblist' %}">Job</a></li>
+<!-- <li class="nav-item"><a class=" text-dark nav-link" href="contact.html">Blog</a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="news.html">News </a></li> -->
+<!-- <li class="nav-item"><a class="text-dark nav-link" href="jobfair.html">Job Fair </a></li> -->
+<li class="nav-item"><a class="text-dark nav-link" href="{% url 'contact' %}">Contact </a></li>
+<!-- <li class="nav-item active"><a class=" nav-link" href="user_register.html">Register </a></li> -->
+<li class="nav-item active"><a class="nav-link " data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="cursor: pointer;" >Register</a></li>
+<li class="button-group">
+  <a href="{% url 'jobseeker_login' %}" class=" nav link button btn btn-common bg-success">Jobseeker Login</a>
+  <a href="{% url 'employer_login' %}" class=" nav link button btn btn-common bg-danger">Employer Login</li></a></li></a>
+  
+{% endblock %}
+
+
+
+
+ 
+  
+ 
+
+{% block body %}
+</header>
+
+
+
+<div class="page-header " style="  padding-top: 29px ;" >
+<div class="container">
+<div class="row ">
+<div class="col-lg-12">
+<div class="inner-header ">
+<h3></h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Register Form  -->
+
+<section id="content" class="section-padding text-light ">
+<div class="container" >
+<div class="row justify-content-center">
+<div class="col-lg-5 col-md-6 col-xs-12">
+<div class="page-login-form box border border-success bg-info">
+<h3 class="text-light">
+    Sign Up as Employer
+
+</h3>
+{% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong></strong> {{message}}
+      <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+<!-- <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline btn-light text-black" href="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a> -->
+
+<!-- <div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div> -->
+
+<!--  First Name -->
+<form class="login-form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="form-group">
+<div class="input-icon">
+<i class="far fa-building"></i>
+<input type="text" class="form-control" name="company_name" placeholder="Company Name" maxlength="50" autocomplete="off" required>
+</div>
+</div>
+<!--  Last Name -->
+
+<div class="form-group">
+  <div class="input-icon">
+    <i class="fa-regular fa-user"></i>
+    <input type="text" class="form-control" name="company_user_name" placeholder="Contact Person Name"  maxlength="50" autocomplete="off" required>
+    </div>
+    </div>
+    <div class="form-group">
+      <div class="input-icon">
+        <i class="lni lni-briefcase"></i>
+        <input type="text" class="form-control" name="company_user_designation" placeholder="Designation"  maxlength="50" autocomplete="off" required>
+        </div>
+        </div>
+
+
+<!-- Email -->
+<div class="form-group">
+<div class="input-icon">
+  <i class="fa-solid fa-envelope"></i>
+<input type="email" class="form-control" name="company_email" placeholder="Official Email " maxlength="50" required autocomplete="off" >
+</div>
+</div>
+
+<!-- Mobile -->
+<div class="form-group">
+  <div class="input-icon">
+  <i class="lni lni-mobile"></i>
+  <input type="text" class="form-control" name="mobile" placeholder="Official Mobile " maxlength="10" required autocomplete="off">
+  </div>
+  </div>
+<!--  Logo -->
+<div class="form-group">
+  <div class="input-icon">
+  
+    <i class="fa-regular fa-image"></i>
+  <input type="file" class="form-control" name="clogo" placeholder="Company Logo "  required >
+  </div>
+  </div>
+
+<!--  password -->
+<div class="form-group ">
+<div class="input-icon">
+<i class="lni-lock"></i>
+<input type="password" class="form-control" placeholder="Password" name="upassword"  maxlength="30" required  >
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+  <i class="lni-lock"></i>
+<input type="password" class="form-control" placeholder="Confirm Password" name="cpassword" maxlength="30" required>
+
+</div>
+</div>
+<div class="form-group">
+</div>
+<div>
+  <br>
+  <label><input type="checkbox" id="ca_agree" name="ca_agree" required></label>
+  I Accept the <a class="text-warning" href="{% url 'terms_conditions' %}" target="_blank">Terms & Conditions</a> of IPSR Job portal
+</div>
+<button class="btn btn-common log-btn mt-3 bg-danger">Register</button>
+<p class="text-center text-light">Already have an account?<a href="{% url 'employer_login' %}"><strong class="text-warning"> Login </strong> </a></p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

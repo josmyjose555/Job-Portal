@@ -1,0 +1,135 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load tz %}
+{% block meta %}
+
+<title>Mangage Jobs - IPSR IT jobs kerala South India </title>
+{% endblock %}
+{% block nav %}
+    
+<li class="nav-item "><a class="nav-link text-dark " href="{% url 'company_profile' %}">Home</a></li>
+<li class="nav-item"><a class="text-dark  nav-link" href="{% url 'employer_manage_job' %}">Manage Jobs</a></li>
+<li class="nav-item"><a class=" text-dark nav-link" href="{% url 'employer_postjob' %}">Post a Job</a></li>
+<li class="nav-item active"><a class=" nav-link" href="{% url 'manage_candidate' %}">Candidate List </a></li>
+<!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <iclass="material-icons text-dark "style="font-size:10px;padding-right:0px">chat</i></a></li></li> -->
+<!-- <li class="nav-item"><a class=" text-dark nav-link  " href="#">Notifications <i class="fa-solid fa-bell text-dark" style="font-size: 10px;"></i></a></li></li> -->
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+{{user.username}} <i class="fa-solid fa-circle-user text-dark"></i></a>
+<ul class="dropdown-menu">
+<!-- <li><a class="dropdown-item text-dark" href="{% url 'company_profile' %}"><i class="fa-solid fa-house-chimney text-dark"></i> Company Profile</a></li> -->
+<!-- <li><a class="dropdown-item text-dark" href="{% url 'search_cv' %}"> <i class="fa-solid fa-file text-dark"></i> Search CV </a></li> -->
+<li><a class="dropdown-item text-dark" href="{% url 'employer_change_password' %}">Change Password </a></li>
+<li >
+  <a href="{% url 'employer_logout' %}"
+      class=" dropdown-item text-dark">Logout</a>
+</li>
+</ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="inner-header">
+<h6 style="font-family:sans-serif;" class="text-info text-center"><span class="bg-info text-white p-3">Candidate Applied</span> </h6>
+</div> 
+</div>
+</div>
+</div>
+</div>
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+<strong></strong> {{message}}
+<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button></div>
+{% endfor %}
+<section id="content p-0 mb-10 bg-white">
+<div class="container col-lg-10">
+<table class="table mb-3">
+<thead class="bg-dark text-white" >
+<tr>
+<th scope="col">No</th>
+<th scope="col"style="width:17%">Job Title</th>
+<th scope="col" >Company</th>
+<th scope="col" >Applicant</th>
+<th scope="col">Email</th>
+<th scope="col">Phone</th>
+<th scope="col">Applied Date</th>
+<th scope="col">Resume</th>
+<th scope="col">Action</th>
+<th sccope="col">Status</th>
+</tr>
+</thead>
+<tbody>
+    <!-- -------------------------------------------- Table data ------------------------------------------------- -->
+ {% for al in application  %}
+ {% if request.user.id == al.job.owner.id %}
+ <tr>
+ <td>{{forloop.counter}}</td>
+ <td>{{al.job.j_title}}</td>
+ <td>{{al.job.company}}</td>
+ <td class="p-3 inline-item">{{al.candidate.user.first_name}} {{al.candidate.user.last_name}}</td>
+ <td>{{al.candidate.user.email}}</td>
+ <td>{{al.candidate.mobile}}</td>
+ <td>{{al.apply_date}}</td>
+ <td><a href="{{al.resume.url}}" class="btn text-info bg-white"><i class="fa fa-file"></i></a></td>
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    
+    {% if al.status == 'Accept' %}
+    <td><small  class='badge badge-success text-white'><i class="fa-solid fa-circle-check text-white"></i> Accepted</small>&nbsp;</td>
+    {% elif al.status == 'Reject' %}
+    <td><small  class='badge badge-danger'><i class="fa-solid fa-xmark text-white"></i> Rejected</small></td> 
+    {% elif al.status == 'Viewed' %}
+    <td>
+        <!-- <small  class="badge badge-info text-white"><i class="fa-sharp fa-solid fa-eye text-white">Viewed</i></small> -->
+    <a href="{%url 'shorlisted_candidate' al.id %}" class="badge badge-warning text-white font-weight-bold border border-dark"><small><i class="fa-sharp fa-solid fa-square-list"></i>Shortlist</small></a>
+    <a href="{% url 'approve_candidate' al.id %}"  class='badge badge-success text-white'><i class="fa-solid fa-circle-check text-white"></i> Accept</a>&nbsp; 
+    <a href="{% url ' reject_candidate' al.id %}"  class='badge badge-danger'><i class="fa-solid fa-xmark text-white"></i> Reject</a></td>
+    {% elif al.status == 'Shortlisted' %}
+    <td>
+    <a href="{% url 'machine_test' al.id %}" class="badge badge-primary text-white "><small>Machine Test</small></a>
+    <a href="{% url 'approve_candidate' al.id %}"  class='badge badge-success text-white'><i class="fa-solid fa-circle-check text-white"></i> Accept</a>&nbsp; 
+    <a href="{% url ' reject_candidate' al.id %}"  class='badge badge-danger'><i class="fa-solid fa-xmark text-white"></i> Reject</a></td>
+    
+    </td>
+    {% elif al.status == 'Machine Test' %}
+    <td>
+    <a href="{% url 'interview' al.id %}" class="badge badge-dark text-white"><small>Interview</small></a> 
+    <a href="{% url 'approve_candidate' al.id %}"  class='badge badge-success text-white'><i class="fa-solid fa-circle-check text-white"></i> Accept</a>&nbsp; 
+    <a href="{% url ' reject_candidate' al.id %}"  class='badge badge-danger'><i class="fa-solid fa-xmark text-white"></i> Reject</a></td>
+    </td>
+    {% elif al.status == 'Interview' %}
+    <td>
+    <a href="{% url 'approve_candidate' al.id %}"  class='badge badge-success text-white'><i class="fa-solid fa-circle-check text-white"></i> Accept</a>&nbsp; 
+    <a href="{% url ' reject_candidate' al.id %}"  class='badge badge-danger'><i class="fa-solid fa-xmark text-white"></i> Reject</a>
+    </td>
+    {% else %}
+    <td class="inline-item">
+    <a href="{% url 'view_candidate' al.id %}" class="badge badge-info text-white"><i class="fa-sharp fa-solid fa-eye text-white"><small>view</small></i></a>
+    <a href="{% url 'approve_candidate' al.id %}"  class='badge badge-success text-white'>
+    <i class="fa-solid fa-circle-check text-white"></i> Accept</a>&nbsp; 
+    <a href="{% url ' reject_candidate' al.id %}"  class='badge badge-danger'>
+    <i class="fa-solid fa-xmark text-white"></i> Reject</a>
+       
+        </td> 
+        
+        {% endif %}
+        <td><small class="badge badge-primary border border-dark"> {{al.status}}</small>
+           </td>
+        </tr>
+                  
+        {% endif %}
+    
+                  {% endfor %}
+                </tbody>
+              </table >
+    </div>
+    
+       
+    </section>
+    <section class="section"></section>
+    <section class="section"></section>
+    <section class="section"></section>
+    
+    {% endblock %}

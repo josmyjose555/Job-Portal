@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="IT Jobs & Career Portal India">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+{% block meta %} 
+{% endblock %}
+<!--======  CSS  here===-->
+
+<!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/line-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}">
+<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" href="{% static 'css/main1.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<link rel="stylesheet" href="">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+</head>
+<!--=====    Navbar   =====-->
+<body>
+    
+<header id="home" class="hero-area">
+  
+<nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
+    
+<div class="container">
+<div class="theme-header clearfix">
+<div class="navbar-header" >
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+<span class="lni-menu"></span>
+<span class="lni-menu"></span>
+<span class="lni-menu"></span>
+</button>
+<a href="{% url 'employer_home' %}" class="navbar-brand"><img src="{% static 'img/logo1.jpg' %}" alt="ipsr_job_site_logo"></a>
+</div>
+<div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+    
+  {% block nav %}
+
+  {% endblock %}
+    <!-- </ul>
+    </li>
+    
+    
+    
+    
+    
+    <li class="button-group">
+    <a href="{% url 'employer_logout' %}" class="button btn btn-common bg-success text-white">Logout</a>
+    </li>
+    </ul> -->
+    </div>
+    </div>
+    </div>
+    <div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
+
+    </nav>
+
+
+
+  </header>
+  {% block body %} 
+  {% endblock %}
+
+ <!--    ================== FOOTER =========================================== -->
+ 
+
+<footer>
+    <section class="footer-Content">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-3 col-md-3 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title">Contact Info</h3>
+    <div class="textwidget">
+    <!-- <p class="">Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque volutpat odio eget diam cursus semper.</p> -->
+    <ul>
+      <li><i class="lni lni-map-marker"></i> ipsr solutions limited<br>
+        Merchant’s Association Building,<br>
+        M.L. Road, Kottayam – 686001<br>
+        Kerala, India
+    </li>
+      <li><i class="lni lni-phone"></i> +91 9020592530,+91 9496401306,<br>+91 481 -2301085</li>
+      <li><i class="lni lni-envelope"></i> ipsr@ipsrsolutions.com</li>
+    </ul>
+    
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-6 col-md-4 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title">IPSRJOBS.COM</h3>
+    <ul class="menu">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms & Conditions</a></li>
+    </ul>
+     <ul class="menu">
+      
+    <li><a href="https://www.ipsr.org/placed-students-list.html">IPSR Placement List</a></li>
+    <li><a href="#">IPSR Drives</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="https://www.ipsr.org/success_stories/">Success Stories</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title">Subscribe Now</h3>
+    <p>Subscribe to recieve future updates.</p>
+    <form method="post" id="subscribe-form" name="subscribe-form" class="validate">
+    <div class="form-group is-empty">
+    <input type="email" value="" name="Email" class="form-control" id="EMAIL" placeholder="Enter Email..." required="">
+    <button type="submit" name="subscribe" id="subscribes" class="btn btn-common sub-btn"><i class="lni-envelope"></i></button>
+    <div class="clearfix"></div>
+    </div>
+    </form>
+    <ul class="mt-3 footer-social">
+    <li><a class="facebook" href="https://www.facebook.com/ipsrsolutions"><i class="lni-facebook-filled"></i></a></li>
+    <li><a class="twitter" href="https://twitter.com/ipsrjobs"><i class="lni-twitter-filled"></i></a></li>
+    <li><a class="linkedin" href="https://in.linkedin.com/in/ipsrjobs"><i class="lni-linkedin-fill"></i></a></li>
+    <li><a href="https://www.instagram.com/ipsr_solutions_ltd/" class="bg-danger" ><i class=" lni lni-instagram-filled " ></i></a></li>
+    
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <div id="copyright">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="site-info text-center">
+      <p>Copyright @ 2022 ipsr solutions limited. All rights reserved</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    </footer>
+    
+    
+    <a href="#" class="back-to-top">
+    <i class="lni-arrow-up"></i>
+    </a>
+    
+    <div id="preloader">
+    <div class="loader" id="loader-1"></div>
+    </div>
+   <!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.js"
+></script>
+
+<script src="{% static 'js/jquery-min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/color-switcher.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'js/waypoints.min.js' %}"></script>
+<script src="{% static 'js/form-validator.min.js' %}"></script>
+<script src="{% static 'js/contact-form-script.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+  
+
+
+
+
+ 

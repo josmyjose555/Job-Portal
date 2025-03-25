@@ -1,0 +1,403 @@
+{% extends 'base3.html' %}
+{% load static %}
+{% block meta %}
+{% if request.user.is_authenticated %}
+<title>Welcome {{request.user.first_name}}  -IPSR Jobs - IT jobs kerala South India</title>
+{% else %}
+<title>Welcome Jobseeker -IPSR Jobs - IT jobs kerala South India</title>
+{% endif %}
+
+{% endblock %}
+
+{% block nav %}
+
+          <li class="nav-item "><a class="nav-link text-dark " href="{% url 'jobseeker_home' %}">Home</a></li>
+          <li class="nav-item"><a class=" text-dark nav-link" href="{% url 'jobseeker_joblist' %}">Jobs</a></li>
+          <!-- <li class="nav-item"> <a class="nav-link text-dark" href="{% url 'resume_page' %}"> View Resume</a></li> -->
+          <!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <i class="material-icons text-dark " style="font-size:10px;padding-right:0px">chat</i></a></li>     -->
+          <!-- <li class="nav-item"><a class=" text-dark nav-link " href="#">Notifications <i class="fa-solid fa-bell text-dark " style="font-size: 10px;"></i></a></li> -->
+          <li class="nav-item"><a class=" text-dark nav-link " href="{% url 'jobseeker_applied_job' %}"></i>Manage Applications </a></li>
+          <li class="nav-item dropdown">
+          
+          <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if request.user.is_authenticated %}
+           {{request.user.first_name}}  {{request.user.last_name}}<i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% else %}
+           User <i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% endif %}
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_profile' %}"><i class="fa-solid fa-house-chimney text-dark"></i> My Profile</a></li>
+            <!-- <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_applied_job' %}">   My Jobs </a></li> -->
+            <!-- <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_saved_jobs' %}"><i class="fa-solid fa-heart text-dark"></i>  Saved Jobs </a></li> -->
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_create_cv' %}"><i class="fa-solid fa-file text-dark"></i>Create Resume </a></li>
+          
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_change_pass' %}">Change Password </a></li>
+            
+          </ul>
+          </li>
+          {% endblock %}
+          {% block body %}
+</header>
+
+
+
+
+<div class="page-header">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="inner-header">
+        
+       
+    <h3 style="font-family:sans-serif;" class="text-info">Create Resume</h3>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+<section id="content p-0">
+<div class="container">
+    
+<div class="row justify-content-center">
+<div class="col-lg-8 col-md-12 col-xs-12">
+<div class="add-resume box border border-info">
+<form class="form-ad" method="post" enctype="multipart/form-data" id="add">
+    {% csrf_token %}
+    
+  
+ 
+<h3 style="font-family:sans-serif;background:#00BCD4;" class=" text-white p-3" >Basic information</h3><br>
+<div class="row">
+    
+<div class="col-md-6">
+<div class="form-group app-label">
+<input  type="text" class="form-control resume" placeholder="First Name" required name="fname">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group app-label">
+<input  type="text" class="form-control resume" placeholder="Last Name" required name="lname">
+</div>
+</div>
+<div class="col-md-12">
+    <div class="form-group app-label">
+    <input  type="text" class="form-control resume" placeholder="Profession Title" required name="title">
+    </div>
+    </div>
+    
+<div class="col-md-6">
+    <div class="form-group app-label">
+        <label >Date of Birth</label>
+        <input  type="date" class="form-control resume" required placeholder="Date Of Birth" name="dob">
+    </div>
+</div>
+<!--  -->
+
+
+
+
+
+<!-- ====================== -->
+<div class="col-md-6">
+    <div class="form-group app-label">
+        
+        <label for=""></label>
+            <select class="nice-select form-control resume" required name="gender">
+                <option data-display="General">General</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+<div class="form-group">
+
+<input type="text" class="form-control" placeholder="Phone Number" maxlength="10" required name="phone">
+</div>
+<div class="form-group">
+
+<input type="email" class="form-control" placeholder="Email Address" name="email" required>
+</div>
+
+<div class="form-group">
+
+    <input type="text" class="form-control" placeholder="Linkedlin" name="link"  required>
+    </div>
+    
+
+
+
+
+ <div class="form-group col-md-5 mb-3">
+    <label for="">Profile Picture</label>
+    <input type="file" class="form-control border border-info " name="pro" id="formFile " required />
+
+</div>
+
+<h3 style="font-family:sans-serif;background:#00BCD4;" class=" text-white p-3">Educational Details </h3><br>
+<!-- java script  -->
+<!-- <div id="field"> -->
+<!-- <div id="field0"> -->
+    <div class="form-group">
+        <label class="control-label text-dark font-weight-bold">Masters Degree (optional)</label>
+        <input type="text" class="form-control" placeholder="Masters"name="master" >
+        </div>
+        <!-- <div class="form-group"> -->
+            <!-- <div class="form-group">
+                <input type="text" class="form-control" placeholder="CGPA   " name="cgpa">
+                </div> -->
+        <!-- <input type="text" class="form-control" placeholder="Field of Study" name="field"> -->
+        <!-- </div> -->
+        <div class="form-group">
+        <input type="text" class="form-control" placeholder="College/University " name="collegem">
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="State  " name="statem">
+            </div>
+            
+        <div class="form-group">
+        <div class="row">
+        <div class="col-md-6">
+        <label class="control-label text-dark font-weight-bold">From</label>
+        <input type="text" class="form-control" placeholder="e.g March 2014" name="startm">
+        </div>
+        <div class="col-md-6">
+        <label class="control-label text-dark font-weight-bold">To</label>
+        <input type="text" class="form-control" placeholder="e.g March 2020" name="endm">
+        </div>
+        </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label text-danger font-weight-bold">Degree*</label>
+            <input type="text" class="form-control" placeholder="Degree"name="degree" required>
+            </div>
+            <!-- <div class="form-group">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="CGPA   " name="cgpa">
+                    </div>
+            <input type="text" class="form-control" placeholder="Field of Study" name="field">
+            </div> -->
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="College/University " name="college" required>
+            </div>
+    
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="State  " name="state" required>
+                </div>
+                
+            <div class="form-group">
+            <div class="row">
+            <div class="col-md-6">
+            <label class="control-labelfont-weight-bold text-dark">From</label>
+            <input type="text" class="form-control" placeholder="e.g March 2014" name="start" required>
+            </div>
+            <div class="col-md-6">
+            <label class="control-label font-weight-bold text-dark">To</label>
+            <input type="text" class="form-control" placeholder="e.g March 2020" name="end" required>
+            </div>
+            </div>
+            </div>    
+    
+
+<!-- </div>
+</div>
+<div class="add-post-btn">
+<div class="float-left">
+<a href="#" class="btn-added bg-white border border-info p-2" id="add-more" name="add-more"><i class="fa-solid fa-plus"></i> Add New Education</a>
+</div> -->
+
+<!-- </div> -->
+
+<!-- ======================================================================================================================== -->
+
+<!-- Experience  -->
+<h3 style="font-family:sans-serif;background:#00BCD4;" class=" text-white p-3">Experience  Details </h3><br>
+<!-- <div id="f"> -->
+<!-- <div id="f0"> -->
+    <div class="form-group">
+        <label class="control-label font-weight-bold text-dark">Current Job (optional)</label>
+
+        <input type="text" class="form-control" placeholder="Company name" name="company">
+        </div>
+        <div class="form-group">
+        
+        <input type="text" class="form-control" placeholder="Job Position" name="position">
+        </div>
+        <div class="form-group">
+        
+            <input type="text" class="form-control" placeholder="Location " name="location">
+            </div>
+        <div class="form-group">
+        <div class="row">
+         <div class="col-md-6">
+        <label class="control-label">From </label>
+        <input type="text" class="form-control" placeholder="e.g March 2014" name="syear">
+        </div>
+        <div class="col-md-6">
+        <label class="control-label">To</label>
+        <input type="text" class="form-control" placeholder="e.g March 2020" name="eyear">
+        </div>
+        
+        </div></div>
+        <!-- job2 -->
+        <div class="form-group">
+            <label class="control-label font-weight-bold text-dark">Job2 (optional)</label>
+
+            <input type="text" class="form-control" placeholder="Company name" name="company2">
+            </div>
+            <div class="form-group">
+            
+            <input type="text" class="form-control" placeholder="Job Position" name="position2">
+            </div>
+            <div class="form-group">
+            
+                <input type="text" class="form-control" placeholder="Location " name="location2">
+                </div>
+            <div class="form-group">
+            <div class="row">
+             <div class="col-md-6">
+            <label class="control-label">From </label>
+            <input type="text" class="form-control" placeholder="e.g March 2014" name="syear2">
+            </div>
+            <div class="col-md-6">
+            <label class="control-label">To</label>
+            <input type="text" class="form-control" placeholder="e.g March 2020" name="eyear2">
+            </div>
+            
+            </div></div>
+            <!-- job 3 -->
+            <!-- <div class="form-group">
+                <label class="control-label font-weight-bold text-dark">Job3 (optional)</label>
+
+                <input type="text" class="form-control" placeholder="Company name" name="company3">
+                </div>
+                <div class="form-group">
+                
+                <input type="text" class="form-control" placeholder="Job Position" name="position3">
+                </div>
+                <div class="form-group">
+                
+                    <input type="text" class="form-control" placeholder="Location " name="location3">
+                    </div>
+                <div class="form-group">
+                <div class="row">
+                 <div class="col-md-6">
+                <label class="control-label">From </label>
+                <input type="text" class="form-control" placeholder="e.g 2014" name="syear3">
+                </div>
+                <div class="col-md-6">
+                <label class="control-label">To</label>
+                <input type="text" class="form-control" placeholder="e.g 2020" name="eyear3">
+                </div>
+                
+                </div></div> -->
+                <!-- job4 -->
+                <!-- <div class="form-group">
+                    <label class="control-label font-weight-bold text-dark">Job4 (optional)</label>
+
+                    <input type="text" class="form-control" placeholder="Company name" name="company4">
+                    </div>
+                    <div class="form-group">
+                    
+                    <input type="text" class="form-control" placeholder="Job Position" name="position4">
+                    </div>
+                    <div class="form-group">
+                    
+                        <input type="text" class="form-control" placeholder="Location " name="location4">
+                        </div>
+                    <div class="form-group">
+                    <div class="row">
+                     <div class="col-md-6">
+                    <label class="control-label">From </label>
+                    <input type="text" class="form-control" placeholder="e.g 2014" name="syear4">
+                    </div>
+                    <div class="col-md-6">
+                    <label class="control-label">To</label>
+                    <input type="text" class="form-control" placeholder="e.g 2020" name="eyear4">
+                    </div>
+                    
+                    </div></div> -->
+
+    
+<!-- </div> -->
+<!-- </div> -->
+
+<!-- ============================================= -->
+
+
+
+<!-- <div class="add-post-btn"> -->
+    <!-- <div class="float-left"> -->
+    <!-- <a href="#" class="btn-added bg-white border border-info p-2" id="addb" name="addb"><i class="fa-solid fa-plus"></i> Add New Experience</a> -->
+    <!-- </div> -->
+    <!-- <div class="float-right">
+    <a href="#" class="btn-delete bg-white border border-danger"><i class="fa-solid fa-trash"></i> Delete This</a> -->
+    <!-- </div> -->
+    <!-- </div> -->
+<!-- ======================== -->
+
+<h3 style="font-family:sans-serif;background:#00BCD4;" class=" text-white p-3">Skills  </h3><br>
+<div class="form-group">
+<div class="row">
+<div class="col-md-12">
+
+<input class="form-control"  placeholder="Skill name, e.g. HTML" type="text" name="skills" required>
+</div>
+<div class="col-md-12">
+<!-- <input class="form-control" placeholder="Skill level 0-5" type="text">
+</div> -->
+</div>
+</div>
+<br>
+<!-- <div class="add-post-btn">
+    <div class="float-left">
+    <a href="#" class="btn-added bg-white border border-info p-2"><i class="fa-solid fa-plus"></i> Add New Skills</a>
+    </div>
+    <div class="float-right">
+    <a href="#" class="btn-delete bg-white border border-danger"><i class="fa-solid fa-trash"></i> Delete This</a>
+    </div>
+    </div> -->
+    <h3 style="font-family:sans-serif;background:#00BCD4;" class=" text-white p-3">Career Objective </h3><br>
+
+    <div class="form-group">
+        <!-- <label class="control-label">Career Objective </label> -->
+        <textarea class="form-control resume" rows="6" id="comment" name="objective" required></textarea>
+    </div>
+    
+</div>
+<!--  -->
+<a href=""  target="_blank"><button type="submit" class="btn btn-info" id="submit" >Submit</button></a>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<br>
+
+{% endblock %}

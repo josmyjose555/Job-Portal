@@ -1,0 +1,245 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block meta %}
+
+<title>Post Jobs - IPSR IT jobs kerala South India </title>
+{% endblock %}
+{% block nav %}
+    
+                            <li class="nav-item "><a class="nav-link text-dark " href="{% url 'company_profile' %}">Home</a></li>
+                            <li class="nav-item"><a class=" text-dark nav-link" href="{% url 'employer_manage_job' %}">Manage Jobs</a>
+                            </li>
+                            <li class="nav-item "><a class=" text-dark nav-link" href="{% url 'employer_postjob' %}">Post a Job</a></li>
+                            <li class="nav-item"><a class=" text-dark nav-link" href="{% url 'manage_candidate' %}">Candidate
+                                    List </a></li>
+                            <!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <i
+                                        class="material-icons text-dark "
+                                        style="font-size:10px;padding-right:0px">chat</i></a></li>
+                            </li> -->
+
+                            <!-- <li class="nav-item"><a class=" text-dark nav-link  " href="#">Notifications <i
+                                        class="fa-solid fa-bell text-dark" style="font-size: 10px;"></i></a></li>
+                            </li> -->
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    {{user.username}} <i class="fa-solid fa-circle-user text-dark"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- <li><a class="dropdown-item text-dark" href="{% url 'company_profile' %}"><i
+                                                class="fa-solid fa-house-chimney text-dark"></i> Company Profile</a>
+                                    </li> -->
+                                    <!-- <li><a class="dropdown-item text-dark" href="{% url 'search_cv' %}"> <i
+                                                class="fa-solid fa-file text-dark"></i> Search CV </a></li> -->
+
+
+                                    <li><a class="dropdown-item text-dark" href="{% url 'employer_change_password' %}">Change
+                                            Password </a></li>
+                                            <li >
+                                                <a href="{% url 'employer_logout' %}"
+                                                    class=" dropdown-item text-dark">Logout</a>
+                                            </li>
+                                </ul>
+                            </li>
+                            {% endblock %}
+
+
+
+
+                         
+
+{% block body %}
+
+    <!-- ======================== -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header">
+                        <h3 style="font-family:sans-serif;" class="text-info">Edit Job</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="content p-0">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-xs-12">
+                    <div class="add-resume box border border-info">
+                        <form class="form-ad" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Job Title</label>
+                                    <input type="text" class="form-control" name='job_title' placeholder="" value="{{pjob.j_title}}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label for="job-type" class="text-muted m-2">Job Type :<span class="text-primary font-weight-bold">[{{pjob.type}}]</span></label>
+                                        <div class="form-button">
+                                            <!-- <select class="nice-select form-control" name="type"  >
+                                                <option data-display="Job Type" selected disabled></option>
+                                                {% for t in type %}
+                                                <option value="{{t.id}}" >{{t.type_title}}</option>
+                                                {% endfor %}
+                                            </select> -->
+                                            <input type="text" class="form-control" value="{{pjob.type}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="control-label text-muted m-2 ">Category:<span class="text-primary font-weight-bold ">[{{pjob.category}}]</label>
+                                        <div class="search-category-container">
+                                            
+                                                <!-- <select class="dropdown-product form-control" name="cate" >
+                                                    <option selected disabled>Categories</option>
+                                                    {% for c in cat %}
+                                                    <option value="{{c.id}}">{{c.title}}</option>
+                                                    {% endfor %}
+                                                </select> -->
+                                                <input type="text" class="form-control " disabled value="{{pjob.category}}">
+                                            </label>
+                                    </div>
+                                    
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Location </label>
+                                        <input type="text" class="form-control" required placeholder="" value="{{pjob.location}}" name="location">
+                                    </div>
+                                    
+<div class="col-md-6">
+    <div class="form-group app-label mt-1">
+        <label class="control-label text-muted">Minimum Salary</label>
+        <input type="text" class="form-control" placeholder="" name="min_s" value="{{pjob.min_salary}}">
+
+</div>
+</div>
+<div class="col-md-6">
+    <div class="form-group app-label mt-1">
+        <label class="control-label text-muted">Maximum Salary</label>
+        <input type="text" class="form-control" placeholder="" name="max_s" value="{{pjob.max_salary}}">
+
+</div>
+</div>
+
+
+    <div class="form-group app-label mt-1">
+        <label class="control-label text-muted">Skills required</label>
+        <input type="text" class="form-control" placeholder=" " name="skill" value="{{pjob.skills}}">
+
+
+</div>
+<div class="col-md-6">
+    <div class="form-group app-label mt-1">
+        <label class="control-label text-muted m-2">Education Level</label>
+        <input type="text" class="form-control" placeholder="" name="quali" value="{{pjob.education}}">
+</div>
+
+</div>
+<div class="col-md-6">
+    <div class="form-group app-label mt-1">
+        <label class="control-label text-muted m-2">Experience :<span class="text-primary font-weight-bold" >[{{pjob.exp}}]</label>
+        <!-- <select class="form-control" name="exp">
+            <option data-display="Experience" selected disabled>Experience</option>
+            {% for e in exp %}
+            <option value="{{e.id}}">{{e.e_title}}</option>
+            {% endfor %}
+        </select> -->
+        <input type="text" class="form-control" value="{{pjob.exp}}" disabled>
+</div>
+</div>
+<div class="col-md-6">
+    <div class="form-group app-label mt-2">
+        <label for="email-address" class="text-muted m-2 ">Email Address</label>
+        <input id="email-address" type="text" class="form-control resume control-label" placeholder="" name="email" value="{{pjob.email}}">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group app-label mt-2">
+        <label for="number" class="text-muted m-2">Phone Number</label>
+        <input id="number" type="text" class="form-control resume control label" placeholder="" name="mobile" maxlength="10" value="{{pjob.mobile}}">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group app-label mt-2">
+        <label for="vacancy" class="text-muted m-2 ">Number Of Vacancies </label>
+        <input id="vacancy" type="text" class="form-control resume control-label" placeholder=""  name="vacancy" value="{{pjob.no_of_vacancy}}">
+    </div>
+
+</div>
+<div class="col-md-6">
+    <div class="form-group app-label mt-2">
+    <label class="control-label m-2">Closing Date <span class="text-primary font-weight-bold">[{{pjob.last_date}}]</span></label>
+    <input type="date" class="form-control" placeholder="" name="close_date" value="[{{pjob.last_date}}]">
+</div>
+</div>
+
+<section id="editor">
+    <div class="form-group">
+        <label for="comment" class="m-2">Job Description</label>
+        <textarea class="form-control resume" rows="30" id="comment" name="j_desc" >{{pjob.job_desc}}</textarea>
+    </div>
+</section>
+
+
+
+
+</div>
+
+
+
+<div class="divider">
+<h3 class="job-title">Company Details</h3>
+</div>
+                                <div class="form-group">
+                                    <label class="control-label">Company Name</label>
+                                    <input type="text" class="form-control" placeholder="" name="cname" value="{{pjob.company}}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Website <span>(optional)</span></label>
+                                    <input type="text" class="form-control" placeholder="" name="website" value="{{pjob.c_website}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Company overview</label>
+                                    <textarea class="form-control resume" rows="15" id="comment" name="c_desc" >{{pjob.c_overview}}</textarea>
+
+                                </div>
+                                    <div class=""> <img src="{{pjob.logo.url}}" alt="" width="30%" style="border-radius: 100%;">
+                                    <a href="" class="text-dark"></a></div>
+                                <div class="custom-file mb-3">
+                                       
+                                    <!-- <input type="file" class="custom-file-input" id="" > -->
+                                    <!-- <input class="form-control" name="logo" type="file" id="validatedCustomFile" accept="pics/images" value="{{pjob.logo}}"> -->
+                                    <!-- <label class="custom-file-label form-control col-md-4" for="validatedCustomFile">Company logo</label> -->
+                                    <!-- <div class="invalid-feedback">Example invalid custom file feedback</div> -->
+                                </div>
+                                <!-- <a href="#" >Submit your job</a> -->
+                                <button type="submit" class="btn btn-common float-right bg-success">Save Changes</button>
+                            <br></form>
+                        <br>
+                        
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+   
+    
+    
+      
+    
+    
+    
+    
+     
+    

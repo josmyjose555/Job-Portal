@@ -1,0 +1,122 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load tz %}
+{% block meta %}
+
+<title>Mangage Jobs - IPSR IT jobs kerala South India </title>
+{% endblock %}
+{% block nav %}
+    
+                            <li class="nav-item "><a class="nav-link text-dark " href="{% url 'company_profile' %}">Home</a></li>
+                            <li class="nav-item active"><a class="  nav-link" href="{% url 'employer_manage_job' %}">Manage Jobs</a>
+                            </li>
+                            <li class="nav-item"><a class=" text-dark nav-link" href="{% url 'employer_postjob' %}">Post a Job</a></li>
+                            <li class="nav-item"><a class=" text-dark nav-link" href="{% url 'manage_candidate' %}">Candidate
+                                    List </a></li>
+                            <!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <i
+                                        class="material-icons text-dark "
+                                        style="font-size:10px;padding-right:0px">chat</i></a></li>
+                            </li> -->
+
+                            <!-- <li class="nav-item"><a class=" text-dark nav-link  " href="#">Notifications <i
+                                        class="fa-solid fa-bell text-dark" style="font-size: 10px;"></i></a></li>
+                            </li> -->
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    {{user.username}} <i class="fa-solid fa-circle-user text-dark"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- <li><a class="dropdown-item text-dark" href="{% url 'company_profile' %}"><i
+                                                class="fa-solid fa-house-chimney text-dark"></i> Company Profile</a>
+                                    </li> -->
+                                    <!-- <li><a class="dropdown-item text-dark" href="{% url 'search_cv' %}"> <i
+                                                class="fa-solid fa-file text-dark"></i> Search CV </a></li> -->
+
+
+                                    <li><a class="dropdown-item text-dark" href="{% url 'employer_change_password' %}">Change
+                                            Password </a></li>
+                                            <li >
+                                                <a href="{% url 'employer_logout' %}"
+                                                    class=" dropdown-item text-dark">Logout</a>
+                                            </li>
+                                </ul>
+                            </li>
+{% endblock %}
+
+
+
+
+                   
+{% block body%}
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-header">
+                    <h6 style="font-family:sans-serif;" class="text-info text-center"><span class="bg-info text-white p-3">Posted Jobs</span> </h6>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+{% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong></strong> {{message}}
+      <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+<section id="content p-0 mb-10 bg-white">
+    <div class="container">
+        <table class="table mb-3 ">
+            <thead class="bg-dark text-white"style="width: 25%">
+              <tr>
+                <th scope="col"  >No</th>
+                <th scope="col" style="width: 25%">Job Title</th>
+                <th scope="col" style="width: 25%">Creation Date</th>
+                <th scope="col" style="width: 15%">Last Date</th>
+                
+                <th scope="col" style="width: 15%">Status</th>
+                <th scope="col">Action</th>
+               </tr>
+            </thead>
+            <tbody>
+                {% for item in j %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{item.j_title}}</td>
+                <td>{{item.date_created}}</td>
+                <td>{{item.last_date}}</td>
+                <!-- ---------------- --------->
+                {% if item.is_end_date %}
+                <td class="text-danger font-weight-bold">Expired</td>
+                {% else %}<td class="text-success font-weight-bold">Active</td>
+                {% endif %}
+                <!-- ---------------------------- -->
+
+                <td class="list-inline-item">
+                    <a href="{% url 'edit_job' item.id %}" >
+                        <button class="btn btn-success btn-sm rounded-0 " type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                    </a>
+                    <form action="{% url 'delete_job' item.id %}" class="d-inline">
+                        {% csrf_token %}
+                    <button class="btn btn-danger btn-sm rounded-0" type="submit" data-toggle="tooltip" onclick="return confirm('Are You Sure to delete?')" data-placement="top" title="Delete" ><i class="fa fa-trash"></i></button>
+                </form>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table >
+</div>
+
+   
+</section>
+<section class="section"></section>
+<section class="section"></section>
+<section class="section"></section>
+
+{% endblock %}

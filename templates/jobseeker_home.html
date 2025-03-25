@@ -1,0 +1,268 @@
+{% extends 'base3.html' %}
+{% load static %}
+{% block meta %}
+{% if request.user.is_authenticated %}
+<title>Welcome {{request.user.first_name}}  -IPSR Jobs - IT jobs kerala South India</title>
+{% else %}
+<title>Welcome Jobseeker -IPSR Jobs - IT jobs kerala South India</title>
+{% endif %}
+
+{% endblock %}
+
+{% block nav %}
+
+          <li class="nav-item active"><a class="nav-link " href="{% url 'jobseeker_home' %}">Home</a></li>
+          <li class="nav-item"><a class=" text-dark nav-link" href="{% url 'jobseeker_joblist' %}">Jobs</a></li>
+          <!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <i class="material-icons text-dark " style="font-size:10px;padding-right:0px">chat</i></a></li>     -->
+          <li class="nav-item"><a class=" text-dark nav-link " href="{% url 'jobseeker_applied_job' %}"></i>Manage Applications </a></li>
+          <li class="nav-item dropdown">
+          
+          <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if request.user.is_authenticated %}
+           {{request.user.first_name}}  {{request.user.last_name}}<i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% else %}
+           User <i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% endif %}
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_profile' %}"><i class="fa-solid fa-house-chimney text-dark"></i> My Profile</a></li>
+            <!-- <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_saved_jobs' %}"><i class="fa-solid fa-heart text-dark"></i>  Saved Jobs </a></li> -->
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_create_cv' %}"><i class="fa-solid fa-file text-dark"></i> Create Resume </a></li>
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_change_pass' %}">Change Password </a></li>
+            
+          </ul>
+          </li>
+          {% endblock %}
+    
+ {% block body %}
+<!-- Search -->
+<div class="container">
+  <div class="row space-100 justify-content-center">
+  <div class="col-lg-10 col-md-12 col-xs-12">
+  <div class="contents">
+    
+  <h2 class="head-title text-success">Welcome Jobseeker</h2>
+  
+  
+  
+  <p>Find Your New Job Easiest Way With IPSR  Jobs</p>
+  <div class="job-search-form">
+    <form class="" method="get" action="{% url 'jobseeker_search' %}">
+  <div class="row">
+  <div class="col-lg-5 col-md-6 col-xs-12">
+  <div class="form-group">
+  <input class="form-control" type="text" placeholder="Job Title or keyword or skill " name="k">
+  </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-xs-12">
+  <div class="form-group">
+  <div class="search-category-container">
+  <label class="styled-select"> 
+  <input name="location" list="locations" placeholder="Locations" class="styled-select form-control "> <i class="lni-map-marker"></i>
+  <datalist id="locations" class="styled-select" >
+   
+  <option value="Thiruvananthapuram"></option>
+  <option value="Kollam"></option>
+  <option value="Pathanamthitta"></option>
+  <option value="Alappuzha"></option>
+  <option value="Kottayam"></option>
+  <option value="Idukki"></option>
+  <option value="Ernakulam"></option>
+  <option value="Thrissur"></option>
+  <option value="Palakkad"></option>
+  <option value="Malappuram"></option>
+  <option value="Kozhikode"></option>
+  <option value="Wayanad"></option>
+  <option value="Kannur"></option>
+  <option value="Kasaragod"></option>
+  </datalist>
+  </label>
+  </div>
+  
+  </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-xs-12">
+   <div class="form-group">
+  <div class="search-category-container">
+  <input name="categorys" list="category" placeholder="Job Category" class="styled-select form-control ">
+  <datalist id="category" class="styled-select">
+  {% for r in categories %}
+  <option value="{{r}}">{{r}} </option>
+  {% endfor %}
+  </datalist>
+  </label>
+  </div>
+  <i class="lni-layers"></i>
+  </div>
+  </div>
+  <div class="col-lg-1 col-md-6 col-xs-12">
+    <a href="{% url 'jobseeker_joblist' %}"><button type="submit" class="button bg-danger"><i class="lni-search"></i></button></a>
+  </div>
+  </div>
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </header>
+  <!-------------search button ends     ------>
+  
+
+<!-- =========================================== -->
+  <section id="job-listings" class="section">
+    <div class="container">
+    <div class="section-header">
+    <h2 class="section-title text-success">Latest Jobs</h2>
+    <p class="text-dark">Hand-picked jobs featured depending on popularity and benifits</p>
+    </div>
+    <div class="row">
+    {% for j in job %}
+    <div class="col-lg-6 col-md-12 col-xs-12">
+      {% if j.id in li %}
+    
+      <a class="job-listings-featured" href="{% url 'j_jobdetails' j.id %}">
+    <div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12">
+    <div class="job-company-logo">
+    <img src="{{j.logo.url}}" alt="" width="50px">
+    </div>
+    <div class="job-details">
+      <h3 class="product-title">{{j.j_title}}</h3>
+      <span class="text-dark">{{j.company}}</span><div class="tags">
+      <span class="text-dark"><i class="fa-solid fa-briefcase text-dark"></i> Experience : {{j.exp}}</span><br>
+       <p><span class="text-dark"><i class="fa-solid fa-graduation-cap text-dark "></i>{{j.education}}</span></p>
+       
+       <span class="text-dark"><i class="fa-solid fa-location-dot text-dark"></i> {{j.location}}</span><br>
+       <p><span class="text-dark" style="text-align: left;"><span class=" text-dark font-weight-bold d-inline">Posted:<br></span>{{j.date_created}}</span></p>
+     </div>
+     
+     </div>
+     
+     </div>
+    <div class="col-lg-6 col-md-6 col-xs-12 text-right">
+    <div class="tag-type">
+      <span class="badge badge-success">{{j.type}}</span><br><br>
+    <!-- <span class="heart-icon ">
+    <i class="lni-heart"></i>
+    </span> -->
+    
+    <span class="full-time bg-warning text-light">Applied</span>
+    </div>
+    </div>
+    </div>
+   </a>
+{% else %}
+<a class="job-listings-featured" href="{% url 'j_jobdetails' j.id %}">
+
+  <div class="row">
+  <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="job-company-logo">
+  <img src="{{j.logo.url}}" alt="" width="50px">
+  </div>
+  <div class="job-details">
+    <h3 class="product-title">{{j.j_title}}</h3>
+    <span class="text-dark">{{j.company}}</span><div class="tags">
+    <span class="text-dark"><i class="fa-solid fa-briefcase text-dark"></i> Experience : {{j.exp}}</span><br>
+     <p><span class="text-dark"><i class="fa-solid fa-graduation-cap text-dark "></i>{{j.education}}</span></p>
+     
+     <span class="text-dark"><i class="fa-solid fa-location-dot text-dark"></i> {{j.location}}</span><br>
+     <p><span class="text-dark" style="text-align: left;"><span class=" text-dark font-weight-bold d-inline">Posted:<br></span>{{j.date_created}}</span></p>
+   </div>
+   
+   </div>
+   
+   </div>
+  <div class="col-lg-6 col-md-6 col-xs-12 text-right">
+  <div class="tag-type">
+    <span class="badge badge-success">{{j.type}}</span><br><br>
+  <!-- <span class="heart-icon ">
+  <i class="lni-heart"></i>
+  </span> -->
+  {% if j.is_end_date %}
+  <span class="full-time bg-danger text-light">View</span>
+  {% else %}
+
+  <span class="full-time bg-danger text-light">View & Apply</span>
+  {% endif %}
+  </div>
+  </div>
+  </div>
+  </a>
+  {% endif %}
+    </div>
+    
+
+{% endfor %}
+
+
+
+
+    <div class="col-12 text-center mt-4">
+    <a href="{% url 'jobseeker_joblist' %}" class="btn btn-common bg-danger">Browse All Jobs</a>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    
+    <!-- ========== -->
+    <!-- <section class="section bg-info ">
+      <div class="container">
+          <div class="row ">
+            <div class="col-lg-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+              
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01"> -->
+                  <!-- <label class="custom-file-label" for="inputGroupFile01">Choose file</label> -->
+                <!-- </div>
+              </div>
+            </div>
+          </div>
+                          <div class="col-lg-5">
+                            <div class="subscribe">
+                              
+                                <form><p class="text-white">Get latest jobs straight to your mailbox. Click create and then confirm to activate the job alert</p>
+
+                                    <div class="row ">
+                                      
+                                        <div class="col-md-9 ">
+                                            <input type="text" class="form-control " placeholder="Enter your E-mail address">
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-custom btn-danger">Get Job Alerts</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+               
+              </div>
+          
+      
+  </section> -->
+      {% endblock %}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

@@ -1,0 +1,52 @@
+{% extends 'base3.html' %}
+
+{% load static %}
+{% load humanize %}
+{% block meta %}
+{% if request.user.is_authenticated %}
+<title>{{request.user.first_name}}  -IPSR Jobs - IT jobs kerala South India</title>
+{% else %}
+<title>Jobseeker -Joblist IPSR Jobs - IT jobs kerala South India</title>
+{% endif %}
+
+{% endblock %}
+{% block nav %}
+
+          <li class="nav-item "><a class="text-dark nav-link " href="{% url 'jobseeker_home' %}">Home</a></li>
+          <li class="nav-item "><a class="text-dark nav-link" href="{% url 'jobseeker_joblist' %}">Jobs</a></li>
+          <!-- <li class="nav-item"><a class="  nav-link  text-dark " href="#">Messages <i class="material-icons text-dark " style="font-size:10px;padding-right:0px">chat</i></a></li>     -->
+          <!-- <li class="nav-item"><a class=" text-dark nav-link " href="#">Notifications <i class="fa-solid fa-bell text-dark " style="font-size: 10px;"></i></a></li> -->
+          <li class="nav-item"><a class=" text-dark nav-link " href="{% url 'jobseeker_applied_job' %}"></i>Manage Applications </a></li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             {% if request.user.is_authenticated %}
+           {{request.user.first_name}}  {{request.user.last_name}}<i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% else %}
+           User <i class="fa-solid fa-circle-user text-dark"></i></a>
+           {% endif %}
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_profile' %}"><i class="fa-solid fa-house-chimney text-dark"></i> My Profile</a></li>
+            <!-- <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_applied_job' %}"> <i class="fa-solid fa-file text-dark"></i>  My Jobs </a></li> -->
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_saved_jobs' %}"><i class="fa-solid fa-heart text-dark"></i>  Saved Jobs </a></li>
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_create_cv' %}">Create Resume </a></li>
+            <li><a class="dropdown-item text-dark" href="{% url 'jobseeker_change_pass' %}">Change Password </a></li>
+          </ul>
+          </li>
+          {% endblock %}
+          {% block body %}
+     
+
+</header>
+
+<div class="page-header">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="inner-header">
+    <h3 style="font-family:sans-serif;" class="text-info">Saved Jobs</h3>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock%}
